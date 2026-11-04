@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Материалы для дизайнеров — Иван Панькин",
   description: "Промпты, инструкции, скиллы и гайды для работы дизайнеров с AI",
-  icons: { icon: "/brand/favicon.svg" },
+  icons: { icon: "/prompt-shop/brand/favicon.svg" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

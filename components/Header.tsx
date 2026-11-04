@@ -6,7 +6,7 @@ export function Header() {
     <header className="site-header">
       <div className="container header-inner">
         <Link href="/" className="brand-mark" aria-label="На главную">
-          <Image src="/brand/logo-mark-primary.svg" alt="" width={42} height={42} priority />
+          <Image src="/prompt-shop/brand/logo-mark-primary.svg" alt="" width={42} height={42} priority />
         </Link>
         <nav className="desktop-nav" aria-label="Основная навигация">
           <Link href="/#catalog">Каталог</Link>

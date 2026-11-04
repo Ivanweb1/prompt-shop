@@ -48,7 +48,7 @@ export default function Home() {
       <Catalog products={products} />
 
       <section className="section about-section" id="about"><div className="container about-grid">
-        <div className="about-mark"><Image src="/brand/logo-mark-mono-graphite.svg" alt="" fill sizes="(max-width: 768px) 100vw, 40vw" /></div>
+        <div className="about-mark"><Image src="/prompt-shop/brand/logo-mark-mono-graphite.svg" alt="" fill sizes="(max-width: 768px) 100vw, 40vw" /></div>
         <div className="about-copy"><div className="descriptor">ОБ АВТОРЕ</div><h2>Иван Панькин<br /><span className="highlight">арт-директор</span></h2><p className="about-lead">Работаю в веб-дизайне больше четырёх лет и участвовал более чем в 100 проектах</p><p>Исследую, как Figma, Tilda и AI-инструменты помогают дизайнерам собирать сильные решения и выстраивать понятный процесс работы</p><div className="about-facts"><span><b>4+</b>лет в дизайне</span><span><b>100+</b>проектов</span><span><b>AI</b>в рабочем процессе</span></div></div>
       </div></section>
 

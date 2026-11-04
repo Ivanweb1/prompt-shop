@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="footer">
       <div className="container footer-grid">
         <div className="footer-brand">
-          <Image src="/brand/logo-mark-inverse.svg" alt="" width={64} height={64} />
+          <Image src="/prompt-shop/brand/logo-mark-inverse.svg" alt="" width={64} height={64} />
           <p>Цифровые материалы для дизайнеров, которые работают с AI</p>
         </div>
         <div>

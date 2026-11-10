@@ -1,3 +1,4 @@
+import { asset } from "@/lib/asset";
 import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/Header";
@@ -6,7 +7,9 @@ import { Footer } from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Материалы для дизайнеров — Иван Панькин",
   description: "Промпты, инструкции, скиллы и гайды для работы дизайнеров с AI",
-  icons: { icon: "/prompt-shop/brand/favicon.svg" },
+  icons: { icon: asset("/brand/favicon.svg") },
+  // закрыто от поисковиков до запуска продаж — убрать при открытии
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

@@ -1,3 +1,4 @@
+import { asset } from "@/lib/asset";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,7 +8,7 @@ export function Footer() {
       <div className="container footer-panel">
         <div className="footer-grid">
           <div className="footer-brand">
-            <Image src="/prompt-shop/brand/logo-mark-primary.svg" alt="" width={48} height={48} />
+            <Image src={asset("/brand/logo-mark-primary.svg")} alt="" width={48} height={48} />
             <p>Цифровые материалы для дизайнеров, которые работают с AI</p>
           </div>
           <div>

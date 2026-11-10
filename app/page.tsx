@@ -1,3 +1,4 @@
+import { asset } from "@/lib/asset";
 import { Chevron } from "@/components/Chevron";
 import Image from "next/image";
 import Link from "next/link";
@@ -88,7 +89,7 @@ export default function Home() {
       <section className="section about-section" id="about"><div className="container about-grid">
         <div className="about-visual">
           <Track className="about-track" rings={6} />
-          <Image className="about-logo" src="/prompt-shop/brand/logo-mark-inverse.svg" alt="" width={160} height={160} />
+          <Image className="about-logo" src={asset("/brand/logo-mark-inverse.svg")} alt="" width={160} height={160} />
           <div className="about-glass"><b>Иван Панькин</b><span>Арт-директор · веб-дизайн</span></div>
         </div>
         <div className="about-copy"><div className="descriptor">ОБ АВТОРЕ</div><h2>Иван Панькин<br /><span className="highlight">арт-директор</span></h2><p className="about-lead">Работаю в веб-дизайне больше четырёх лет и участвовал более чем в 100 проектах</p><p>Исследую, как Figma, Tilda и AI-инструменты помогают дизайнерам собирать сильные решения и выстраивать понятный процесс работы</p><div className="about-facts"><span><b>4+</b>лет в дизайне</span><span><b>100+</b>проектов</span><span><b>AI</b>в рабочем процессе</span></div></div>

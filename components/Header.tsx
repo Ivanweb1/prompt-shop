@@ -8,7 +8,7 @@ export function Header() {
       <div className="container">
         <div className="header-inner">
           <Link href="/" className="brand-mark" aria-label="На главную">
-            <Image src="/prompt-shop/brand/logo-mark-primary.svg" alt="" width={32} height={32} priority />
+            <Image className="brand-avatar" src="/prompt-shop/brand/avatar.jpg" alt="" width={36} height={36} priority />
             <span>Иван Панькин</span>
           </Link>
           <nav className="desktop-nav" aria-label="Основная навигация">

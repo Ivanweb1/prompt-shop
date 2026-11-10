@@ -149,9 +149,16 @@ main{overflow:hidden}
 .filter-pills button:hover{background:#fff}
 .filter-pills button.active{background:var(--ink);color:#fff}
 .filter-pills sup{margin-left:6px;opacity:.55;font-size:9px}
-.sort-select{display:flex;align-items:center}
-.sort-select select{-webkit-appearance:none;appearance:none;min-width:170px;height:46px;border:1px solid var(--line);background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M2.4 7 12 16.6 21.6 7' stroke='%230F1620' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 18px center/12px 12px;border-radius:999px;padding:0 46px 0 20px;font-size:13px;font-weight:500;color:var(--ink);cursor:pointer;outline:none;transition:border-color .2s}
-.sort-select select:hover,.sort-select select:focus{border-color:var(--line-strong)}
+.sort-dropdown{position:relative;flex:none}
+.sort-trigger{min-width:180px;height:46px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 18px 0 20px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:13px;font-weight:500;color:var(--ink);cursor:pointer;transition:border-color .2s}
+.sort-trigger:hover,.sort-dropdown.open .sort-trigger{border-color:var(--line-strong)}
+.sort-trigger .chevron{width:12px;height:12px;transition:transform .2s}
+.sort-dropdown.open .sort-trigger .chevron{transform:rotate(180deg)}
+.sort-menu{position:absolute;z-index:20;top:calc(100% + 8px);right:0;min-width:100%;margin:0;padding:6px;list-style:none;border-radius:20px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-float);animation:menuIn .16s ease}
+.sort-menu li{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:11px 14px;border-radius:14px;font-size:13px;font-weight:500;color:var(--ink-soft);cursor:pointer;white-space:nowrap}
+.sort-menu li.active{background:var(--panel);color:var(--ink)}
+.sort-menu li.selected{color:var(--blue)}
+.sort-menu svg{width:15px;height:15px;flex:none}
 .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .product-card{position:relative;display:flex;flex-direction:column;background:#fff;border-radius:var(--r-lg);padding:10px;min-width:0;box-shadow:var(--shadow-soft);transition:transform .25s ease,box-shadow .25s ease}
 .product-card:hover{transform:translateY(-5px);box-shadow:0 24px 60px rgba(14,40,96,.12)}
@@ -392,8 +399,11 @@ main{overflow:hidden}
 @media(max-width:768px){
   .container,.thanks-page{width:min(100% - 32px,720px)}
   .site-header{padding:10px 0 8px}
-  .search-in-bar{display:none}
-  .search-in-menu{display:block}
+  .brand-mark>span{display:none}
+  .header-inner{gap:8px}
+  .header-actions .button-small{display:none}
+  .search-in-bar{max-width:none}
+  .search-in-bar .search-results{position:fixed;left:12px;right:12px;top:78px;min-width:0}
   .header-inner{height:58px}
   .hero-stage{padding:64px 20px 210px}
   .hero-copy h1{font-size:clamp(48px,11vw,80px)}
@@ -422,11 +432,9 @@ main{overflow:hidden}
 @media(max-width:520px){
   .container,.thanks-page{width:calc(100% - 24px)}
   .header-inner{padding:0 6px 0 14px}
-  .brand-mark{font-size:14px;gap:8px}
   .site-header .brand-role{display:none}
   .header-inner .button-small{padding-left:14px;font-size:12px;gap:8px}
   .header-actions{gap:6px}
-  .header-actions .button-small{display:none}
   .burger-button{width:42px;height:42px}
   .burger-panel{position:fixed;left:12px;right:12px;top:78px;width:auto}
   .cart-button{width:42px;height:42px}
@@ -470,7 +478,7 @@ main{overflow:hidden}
   .product-grid,.related-grid{grid-template-columns:1fr}
   .card-preview{height:260px}
   .card-body h3{min-height:auto;font-size:19px}
-  .sort-select,.sort-select select{width:100%}
+  .sort-dropdown,.sort-trigger{width:100%}
   .about-facts{grid-template-columns:1fr 1fr}
   .about-facts span:last-child{grid-column:1/-1}
   .about-lead{font-size:19px!important}

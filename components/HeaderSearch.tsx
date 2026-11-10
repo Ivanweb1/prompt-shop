@@ -8,7 +8,7 @@ import { priceLabel, products } from "@/data/products";
 // Запросы, которые «печатаются» в пустом поле — все находят что-то в каталоге
 const HINTS = ["промпт для концепции сайта", "парсер 2ГИС", "рассылки в Telegram", "чек-лист вёрстки", "аудит макета в Figma", "мини-курс по сборке сайта"];
 
-const norm = (text: string) => text.toLowerCase().replace(/ё/g, "е").replace(/[@«»"().,—-]/g, " ");
+const norm = (text: string) => " " + text.toLowerCase().replace(/ё/g, "е").replace(/[@«»"().,—\[\]_-]/g, " ");
 
 // У каждого слова запроса берём начало (5 букв), чтобы «рассылки» находило «рассылает», а «вёрстки» — «вёрстка»
 function search(query: string) {
@@ -20,8 +20,8 @@ function search(query: string) {
       const body = norm([item.description, ...item.contents, ...item.ai, ...item.volume, item.preview.result].join(" "));
       let score = 0;
       for (const w of words) {
-        if (title.includes(w)) score += 3;
-        else if (body.includes(w)) score += 1;
+        if (title.includes(" " + w)) score += 3; // совпадение только с начала слова
+        else if (body.includes(" " + w)) score += 1;
         else return null; // каждое слово должно найтись
       }
       return { item, score };

@@ -7,7 +7,7 @@ import { Footer } from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Материалы для дизайнеров — Иван Панькин",
   description: "Промпты, инструкции, скиллы и гайды для работы дизайнеров с AI",
-  icons: { icon: asset("/brand/favicon.svg") },
+  icons: { icon: asset("/brand/favicon-avatar.png"), apple: asset("/brand/apple-touch-avatar.png") },
   // закрыто от поисковиков до запуска продаж — убрать при открытии
   robots: { index: false, follow: false },
 };

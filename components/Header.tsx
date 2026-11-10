@@ -1,6 +1,8 @@
 import { asset } from "@/lib/asset";
 import { Chevron } from "@/components/Chevron";
+import { BurgerMenu } from "@/components/BurgerMenu";
 import { CartButton } from "@/components/CartButton";
+import { HeaderSearch } from "@/components/HeaderSearch";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,15 +15,11 @@ export function Header() {
             <Image className="brand-avatar" src={asset("/brand/avatar.jpg")} alt="" width={36} height={36} priority />
             <span>Ivan<span className="brand-role"> · Creative Director</span></span>
           </Link>
-          <nav className="desktop-nav" aria-label="Основная навигация">
-            <Link href="/#catalog">Каталог</Link>
-            <Link href="/#bundles">Комплекты</Link>
-            <Link href="/#about">Об авторе</Link>
-            <Link href="/#faq">FAQ</Link>
-          </nav>
+          <HeaderSearch className="search-in-bar" />
           <div className="header-actions">
             <CartButton />
             <Link href="/#catalog" className="button button-small button-dark">Выбрать материал <span aria-hidden><Chevron /></span></Link>
+            <BurgerMenu />
           </div>
         </div>
       </div>

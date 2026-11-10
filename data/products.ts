@@ -11,6 +11,8 @@ export type Product = {
   priceUnit?: string; // «/мес»
   priceNote?: string; // расшифровка тарифов на странице товара
   externalUrl?: string; // товар покупается не через сайт (например, Telegram-бот)
+  image?: string; // своя обложка из public/, вместо сгенерированного превью
+  imageBg?: string; // цвет подложки под картинку
   volume: string[];
   ai: string[];
   description: string;
@@ -164,6 +166,8 @@ export const products: Product[] = [
     priceUnit: "/мес",
     priceNote: "Пробный тариф бесплатно. Старт — 1 990 ₽, Про — 4 900 ₽, Агентство — 12 900 ₽ в месяц",
     externalUrl: "https://t.me/ReachTGbot",
+    image: "/products/reachtg.jpg",
+    imageBg: "#01071A",
     volume: ["Mini App", "Пробный тариф"],
     ai: ["Telegram", "CSV"],
     description: "Рассылает сообщения по базе с нескольких Telegram-аккаунтов, бережёт их от бана и собирает ответы лидов в одном окне",

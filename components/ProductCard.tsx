@@ -1,14 +1,14 @@
 import { Chevron } from "@/components/Chevron";
 import Link from "next/link";
 import { Product, formatPrice, priceLabel } from "@/data/products";
-import { PreviewArt } from "./PreviewArt";
+import { ProductCover } from "./ProductCover";
 
 export function ProductCard({ product, index = 1 }: { product: Product; index?: number }) {
   const discount = product.oldPrice ? Math.round((1 - product.price / product.oldPrice) * 100) : 0;
   return (
     <article className="product-card">
       <Link href={`/product/${product.slug}`} className="card-preview" aria-label={product.title}>
-        <PreviewArt {...product.preview} index={index} dark={index % 3 === 0} />
+        <ProductCover product={product} index={index} dark={index % 3 === 0} />
       </Link>
       <div className="card-body">
         <div className="card-meta"><span>{product.category}</span>{product.isFree && <span className="free-tag">Бесплатно</span>}</div>

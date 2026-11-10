@@ -1,5 +1,6 @@
 import { asset } from "@/lib/asset";
 import { Chevron } from "@/components/Chevron";
+import { CartButton } from "@/components/CartButton";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -18,7 +19,10 @@ export function Header() {
             <Link href="/#about">Об авторе</Link>
             <Link href="/#faq">FAQ</Link>
           </nav>
-          <Link href="/#catalog" className="button button-small button-dark">Выбрать материал <span aria-hidden><Chevron /></span></Link>
+          <div className="header-actions">
+            <CartButton />
+            <Link href="/#catalog" className="button button-small button-dark">Выбрать материал <span aria-hidden><Chevron /></span></Link>
+          </div>
         </div>
       </div>
     </header>

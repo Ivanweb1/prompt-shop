@@ -1,6 +1,6 @@
 import { Chevron } from "@/components/Chevron";
 import Link from "next/link";
-import { Product, formatPrice } from "@/data/products";
+import { Product, formatPrice, priceLabel } from "@/data/products";
 import { PreviewArt } from "./PreviewArt";
 
 export function ProductCard({ product, index = 1 }: { product: Product; index?: number }) {
@@ -15,7 +15,7 @@ export function ProductCard({ product, index = 1 }: { product: Product; index?: 
         <h3><Link href={`/product/${product.slug}`}>{product.title}</Link></h3>
         <div className="card-volume">{product.volume.map((item) => <span key={item}>{item}</span>)}</div>
         <div className="price-row">
-          <strong>{product.isFree ? "Бесплатно" : formatPrice(product.price)}</strong>
+          <strong>{priceLabel(product)}</strong>
           {product.oldPrice && <><s>{formatPrice(product.oldPrice)}</s><span className="discount">−{discount}%</span></>}
         </div>
       </div>

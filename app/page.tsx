@@ -4,13 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { Catalog } from "@/components/Catalog";
 import { Track } from "@/components/Track";
+import { HeroPreviews } from "@/components/HeroPreviews";
 import { bundles, getBundleProducts } from "@/data/bundles";
 import { categories, formatPrice, products } from "@/data/products";
 
 const bundle = bundles[0];
 const bundleProducts = getBundleProducts(bundle);
 const bundleDiscount = Math.round((1 - bundle.price / bundle.oldPrice) * 100);
-const categoryTones = ["", "", "cat-sky", "", "cat-deep"];
+const categoryTones = ["", "cat-sky", "", "cat-deep", "", ""];
 
 const faq = [
   ["Что такое промпт и как его использовать", "Промпт — это готовая инструкция для нейросети. Вы подставляете свои вводные, запускаете её в указанном сервисе и получаете структурированный результат"],
@@ -27,16 +28,15 @@ export default function Home() {
         <div className="container">
           <div className="hero-stage">
             <span className="hero-glow" aria-hidden />
-            <Track className="hero-track" rings={7} />
             <div className="hero-copy">
               <div className="descriptor light-muted">МАГАЗИН ИВАНА ПАНЬКИНА</div>
               <h1>
                 <span className="line">Рабочие материалы</span>
-                <span className="line"><Track className="h1-track" rings={4} />для дизайна</span>
-                <span className="line"><span className="highlight">с AI</span><span className="h1-hatch" aria-hidden /></span>
+                <span className="line">для дизайна <span className="highlight">с AI</span></span>
               </h1>
-              <div className="hero-actions"><Link className="button button-light" href="#catalog">Смотреть каталог <span aria-hidden><Chevron /></span></Link><span className="hero-caption">8 демо-материалов<br />для первой версии</span></div>
+              <div className="hero-actions"><Link className="button button-light" href="#catalog">Смотреть каталог <span aria-hidden><Chevron /></span></Link><span className="hero-caption">{products.length} материалов<br />в каталоге</span></div>
             </div>
+            <HeroPreviews />
           </div>
 
           <div className="hero-panel" aria-label="Категории">

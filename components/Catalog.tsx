@@ -28,7 +28,7 @@ export function Catalog({ products }: { products: Product[] }) {
           <div className="filter-pills" role="group" aria-label="Фильтр по категориям">
             {categories.map((item) => <button key={item.name} onClick={() => setCategory(item.name as CategoryFilter)} className={category === item.name ? "active" : ""}>{item.name}<sup>{item.count}</sup></button>)}
           </div>
-          <label className="sort-select"><span>Сортировка</span><select value={sort} onChange={(event) => setSort(event.target.value as SortMode)}><option value="new">Новые</option><option value="cheap">Дешевле</option><option value="expensive">Дороже</option><option value="popular">Популярные</option></select></label>
+          <label className="sort-select"><select aria-label="Сортировка" value={sort} onChange={(event) => setSort(event.target.value as SortMode)}><option value="new">Новые</option><option value="cheap">Дешевле</option><option value="expensive">Дороже</option><option value="popular">Популярные</option></select></label>
         </div>
         <div className="product-grid">{visible.map((product, index) => <ProductCard product={product} index={index + 1} key={product.slug} />)}</div>
       </div>

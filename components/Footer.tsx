@@ -8,7 +8,7 @@ export function Footer() {
       <div className="container footer-panel">
         <div className="footer-grid">
           <div className="footer-brand">
-            <Image src={asset("/brand/logo-mark-primary.svg")} alt="" width={48} height={48} />
+            <div className="brand-mark"><Image className="brand-avatar" src={asset("/brand/avatar.jpg")} alt="" width={36} height={36} /><span>Ivan · Creative Director</span></div>
             <p>Цифровые материалы для дизайнеров, которые работают с AI</p>
           </div>
           <div>

@@ -330,6 +330,7 @@ main{overflow:hidden}
   .container,.thanks-page{width:calc(100% - 24px)}
   .header-inner{padding:0 6px 0 14px}
   .brand-mark{font-size:14px;gap:8px}
+  .site-header .brand-role{display:none}
   .header-inner .button-small{padding-left:14px;font-size:12px;gap:8px}
   .hero-stage{min-height:auto;border-radius:var(--r-lg);padding:52px 16px 190px}
   .hero-copy h1{font-size:44px;letter-spacing:-.045em}

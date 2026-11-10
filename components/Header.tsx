@@ -10,7 +10,7 @@ export function Header() {
         <div className="header-inner">
           <Link href="/" className="brand-mark" aria-label="На главную">
             <Image className="brand-avatar" src={asset("/brand/avatar.jpg")} alt="" width={36} height={36} priority />
-            <span>Иван Панькин</span>
+            <span>Ivan<span className="brand-role"> · Creative Director</span></span>
           </Link>
           <nav className="desktop-nav" aria-label="Основная навигация">
             <Link href="/#catalog">Каталог</Link>

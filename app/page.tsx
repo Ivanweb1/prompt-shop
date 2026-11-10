@@ -1,3 +1,4 @@
+import { Chevron } from "@/components/Chevron";
 import Image from "next/image";
 import Link from "next/link";
 import { Catalog } from "@/components/Catalog";
@@ -33,7 +34,7 @@ export default function Home() {
                 <span className="line"><Track className="h1-track" rings={4} />для дизайна</span>
                 <span className="line"><span className="highlight">с AI</span><span className="h1-hatch" aria-hidden /></span>
               </h1>
-              <div className="hero-actions"><Link className="button button-light" href="#catalog">Смотреть каталог <span aria-hidden>↘</span></Link><span className="hero-caption">8 демо-материалов<br />для первой версии</span></div>
+              <div className="hero-actions"><Link className="button button-light" href="#catalog">Смотреть каталог <span aria-hidden><Chevron /></span></Link><span className="hero-caption">8 демо-материалов<br />для первой версии</span></div>
             </div>
           </div>
 
@@ -47,7 +48,7 @@ export default function Home() {
                 {categoryTones[index] && <Track className="cat-track" />}
                 <span className="cat-card-top"><span>{String(index + 1).padStart(2, "0")}</span><span>{item.count} {item.count === 1 ? "материал" : "материала"}</span></span>
                 <strong>{item.name}</strong>
-                <span className="cat-arrow" aria-hidden>↘</span>
+                <span className="cat-arrow" aria-hidden><Chevron /></span>
               </a>
             ))}
           </div>
@@ -71,7 +72,7 @@ export default function Home() {
               <span className="bundle-label">Комплект · −{bundleDiscount}%</span>
               <h3>{bundle.title}</h3>
               <p>{bundle.description}</p>
-              <em>Подробнее ↘</em>
+              <em>Подробнее <Chevron /></em>
             </div>
             <dl className="bundle-stats">
               <div><dt>Материалов</dt><dd>{bundleProducts.length}</dd></div>
@@ -93,7 +94,7 @@ export default function Home() {
         <div className="about-copy"><div className="descriptor">ОБ АВТОРЕ</div><h2>Иван Панькин<br /><span className="highlight">арт-директор</span></h2><p className="about-lead">Работаю в веб-дизайне больше четырёх лет и участвовал более чем в 100 проектах</p><p>Исследую, как Figma, Tilda и AI-инструменты помогают дизайнерам собирать сильные решения и выстраивать понятный процесс работы</p><div className="about-facts"><span><b>4+</b>лет в дизайне</span><span><b>100+</b>проектов</span><span><b>AI</b>в рабочем процессе</span></div></div>
       </div></section>
 
-      <section className="section faq-section" id="faq"><div className="container faq-grid"><div><div className="descriptor">FAQ</div><h2>Коротко о <span className="highlight">главном</span></h2><p>Если ответа здесь нет, напишите в Telegram</p><a className="button button-dark" href="https://t.me/" target="_blank" rel="noreferrer">Написать в Telegram <span aria-hidden>↘</span></a></div><div className="faq-list">{faq.map(([question, answer], index) => <details key={question} open={index === 0}><summary><span>{String(index + 1).padStart(2, "0")}</span>{question}<b>+</b></summary><p>{answer}</p></details>)}</div></div></section>
+      <section className="section faq-section" id="faq"><div className="container faq-grid"><div><div className="descriptor">FAQ</div><h2>Коротко о <span className="highlight">главном</span></h2><p>Если ответа здесь нет, напишите в Telegram</p><a className="button button-dark" href="https://t.me/" target="_blank" rel="noreferrer">Написать в Telegram <span aria-hidden><Chevron /></span></a></div><div className="faq-list">{faq.map(([question, answer], index) => <details key={question} open={index === 0}><summary><span>{String(index + 1).padStart(2, "0")}</span>{question}<b>+</b></summary><p>{answer}</p></details>)}</div></div></section>
     </>
   );
 }

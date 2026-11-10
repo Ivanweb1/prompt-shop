@@ -1,3 +1,4 @@
+import { Chevron } from "@/components/Chevron";
 import Link from "next/link";
 import { Product, formatPrice } from "@/data/products";
 import { PreviewArt } from "./PreviewArt";
@@ -18,7 +19,7 @@ export function ProductCard({ product, index = 1 }: { product: Product; index?: 
           {product.oldPrice && <><s>{formatPrice(product.oldPrice)}</s><span className="discount">−{discount}%</span></>}
         </div>
       </div>
-      <Link href={`/product/${product.slug}`} className="card-link" aria-label={`Открыть ${product.title}`}>↘</Link>
+      <Link href={`/product/${product.slug}`} className="card-link" aria-label={`Открыть ${product.title}`}><Chevron /></Link>
     </article>
   );
 }

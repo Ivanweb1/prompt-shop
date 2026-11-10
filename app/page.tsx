@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Catalog } from "@/components/Catalog";
-import { PreviewArt } from "@/components/PreviewArt";
+import { Track } from "@/components/Track";
 import { bundles, getBundleProducts } from "@/data/bundles";
 import { categories, formatPrice, products } from "@/data/products";
 
 const bundle = bundles[0];
 const bundleProducts = getBundleProducts(bundle);
 const bundleDiscount = Math.round((1 - bundle.price / bundle.oldPrice) * 100);
+const categoryTones = ["", "", "cat-sky", "", "cat-deep"];
 
 const faq = [
   ["Что такое промпт и как его использовать", "Промпт — это готовая инструкция для нейросети. Вы подставляете свои вводные, запускаете её в указанном сервисе и получаете структурированный результат"],
@@ -21,34 +22,74 @@ export default function Home() {
   return (
     <>
       <section className="hero">
-        <div className="container hero-grid">
-          <div className="hero-copy">
-            <div className="descriptor">МАГАЗИН ИВАНА ПАНЬКИНА</div>
-            <h1>Рабочие материалы для дизайна <span className="highlight">с AI</span></h1>
-            <p>Промпты, инструкции, скиллы и гайды, которые помогают пройти путь от идеи до готового результата</p>
-            <div className="hero-actions"><Link className="button button-blue" href="#catalog">Смотреть каталог <span aria-hidden>↘</span></Link><span className="hero-caption">8 демо-материалов<br />для первой версии</span></div>
+        <div className="container">
+          <div className="hero-stage">
+            <span className="hero-glow" aria-hidden />
+            <Track className="hero-track" rings={7} />
+            <div className="hero-copy">
+              <div className="descriptor light-muted">МАГАЗИН ИВАНА ПАНЬКИНА</div>
+              <h1>
+                <span className="line">Рабочие материалы</span>
+                <span className="line"><Track className="h1-track" rings={4} />для дизайна</span>
+                <span className="line"><span className="highlight">с AI</span><span className="h1-hatch" aria-hidden /></span>
+              </h1>
+              <div className="hero-actions"><Link className="button button-light" href="#catalog">Смотреть каталог <span aria-hidden>↘</span></Link><span className="hero-caption">8 демо-материалов<br />для первой версии</span></div>
+            </div>
           </div>
-          <div className="hero-visual" aria-hidden>
-            <div className="giant-module module-outline" /><div className="giant-module module-solid" />
-            <div className="hero-card"><div className="hero-card-top"><span>AI / DESIGN</span><span>01—08</span></div><strong>Соберите свой рабочий процесс</strong><div className="mini-modules"><i /><i /><i /><i /><i /></div></div>
+
+          <div className="hero-panel" aria-label="Категории">
+            <div className="hero-intro">
+              <div className="descriptor">КАТЕГОРИИ</div>
+              <div><h2>От идеи до готового результата</h2><p>Промпты, инструкции, скиллы и гайды, которые помогают пройти путь от идеи до готового результата</p></div>
+            </div>
+            {categories.slice(1).map((item, index) => (
+              <a href="#catalog" className={`cat-card ${categoryTones[index]}`} key={item.name}>
+                {categoryTones[index] && <Track className="cat-track" />}
+                <span className="cat-card-top"><span>{String(index + 1).padStart(2, "0")}</span><span>{item.count} {item.count === 1 ? "материал" : "материала"}</span></span>
+                <strong>{item.name}</strong>
+                <span className="cat-arrow" aria-hidden>↘</span>
+              </a>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="categories-strip" aria-label="Категории"><div className="container categories-row">{categories.slice(1).map((item, index) => <a href="#catalog" key={item.name}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item.name}</strong><small>{item.count} {item.count === 1 ? "материал" : "материала"}</small></a>)}</div></section>
-
       <section className="section bundle-section" id="bundles"><div className="container">
-        <div className="section-heading inverse"><div><div className="descriptor light-muted">КОМПЛЕКТОМ ВЫГОДНЕЕ</div><h2>Три шага в одном <span className="highlight">наборе</span></h2></div><p>Материалы дополняют друг друга и стоят выгоднее вместе</p></div>
-        <Link href={`/bundle/${bundle.slug}`} className="bundle-card">
-          <div className="bundle-info"><span className="bundle-label">Комплект · −{bundleDiscount}%</span><h3>{bundle.title}</h3><p>{bundle.description}</p><div className="bundle-products">{bundleProducts.map((item, index) => <span key={item.slug}><b>{String(index + 1).padStart(2, "0")}</b>{item.title.replace("[ДЕМО] ", "")}</span>)}</div><div className="price-row bundle-price"><strong>{formatPrice(bundle.price)}</strong><s>{formatPrice(bundle.oldPrice)}</s></div></div>
-          <div className="bundle-art"><PreviewArt eyebrow="Комплект" result="Идея → сборка → проверка" dark /><span className="bundle-arrow">↘</span></div>
-        </Link>
+        <div className="section-heading centered"><div className="descriptor">КОМПЛЕКТОМ ВЫГОДНЕЕ</div><h2>Три шага в одном <span className="highlight">наборе</span></h2><p>Материалы дополняют друг друга и стоят выгоднее вместе</p></div>
+        <div className="bundle-layout">
+          <ol className="bundle-steps">
+            {bundleProducts.map((item, index) => (
+              <li key={item.slug} className={index === 0 ? "active" : ""}>
+                <Link href={`/product/${item.slug}`}><b>{item.title.replace("[ДЕМО] ", "")}</b><small>{String(index + 1).padStart(2, "0")} · {item.category}</small></Link>
+              </li>
+            ))}
+          </ol>
+          <Link href={`/bundle/${bundle.slug}`} className="bundle-stage">
+            <Track className="bundle-track" rings={6} />
+            <span className="bundle-hatch" aria-hidden />
+            <div className="bundle-glass">
+              <span className="bundle-label">Комплект · −{bundleDiscount}%</span>
+              <h3>{bundle.title}</h3>
+              <p>{bundle.description}</p>
+              <em>Подробнее ↘</em>
+            </div>
+            <dl className="bundle-stats">
+              <div><dt>Материалов</dt><dd>{bundleProducts.length}</dd></div>
+              <div><dt>Скидка</dt><dd>−{bundleDiscount}%</dd></div>
+              <div><dt>Цена</dt><dd>{formatPrice(bundle.price)}<s>{formatPrice(bundle.oldPrice)}</s></dd></div>
+            </dl>
+          </Link>
+        </div>
       </div></section>
 
       <Catalog products={products} />
 
       <section className="section about-section" id="about"><div className="container about-grid">
-        <div className="about-mark"><Image src="/prompt-shop/brand/logo-mark-mono-graphite.svg" alt="" fill sizes="(max-width: 768px) 100vw, 40vw" /></div>
+        <div className="about-visual">
+          <Track className="about-track" rings={6} />
+          <Image className="about-logo" src="/prompt-shop/brand/logo-mark-inverse.svg" alt="" width={160} height={160} />
+          <div className="about-glass"><b>Иван Панькин</b><span>Арт-директор · веб-дизайн</span></div>
+        </div>
         <div className="about-copy"><div className="descriptor">ОБ АВТОРЕ</div><h2>Иван Панькин<br /><span className="highlight">арт-директор</span></h2><p className="about-lead">Работаю в веб-дизайне больше четырёх лет и участвовал более чем в 100 проектах</p><p>Исследую, как Figma, Tilda и AI-инструменты помогают дизайнерам собирать сильные решения и выстраивать понятный процесс работы</p><div className="about-facts"><span><b>4+</b>лет в дизайне</span><span><b>100+</b>проектов</span><span><b>AI</b>в рабочем процессе</span></div></div>
       </div></section>
 

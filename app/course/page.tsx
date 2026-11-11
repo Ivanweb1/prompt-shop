@@ -3,7 +3,7 @@ import Link from "next/link";
 import { asset } from "@/lib/asset";
 import { Chevron } from "@/components/Chevron";
 import { Track } from "@/components/Track";
-import { ScrollHero } from "@/components/course/ScrollHero";
+import { CourseHero } from "@/components/course/CourseHero";
 import { DemoVideo } from "@/components/course/DemoVideo";
 import { PromptDemo } from "@/components/course/PromptDemo";
 import { seller } from "@/data/seller";
@@ -61,7 +61,7 @@ const faq = [
 export default function CoursePage() {
   return (
     <div className="course">
-      <ScrollHero />
+      <CourseHero />
 
       <section className="section c-showcase" id="demos"><div className="container">
         <div className="section-heading"><div><div className="descriptor">ВИТРИНА</div><h2>Вот что вы будете<br /><span className="highlight">делать</span></h2></div><p>Живые сайты — откройте любой и полистайте. Бренды вымышленные, сделано с ИИ</p></div>

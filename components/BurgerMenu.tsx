@@ -6,6 +6,7 @@ import { HeaderSearch } from "./HeaderSearch";
 
 const LINKS = [
   ["/#catalog", "Каталог"],
+  ["/course/", "Курс: вау-сайты через Claude Code"],
   ["/#about", "Об авторе"],
   ["/#faq", "FAQ"],
   ["/cart/", "Корзина"],

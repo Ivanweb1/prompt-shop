@@ -14,7 +14,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const product = getProduct(slug);
   if (!product) notFound();
   const related = products.filter((item) => item.slug !== product.slug && item.category === product.category).slice(0, 2);
-  const fallback = products.filter((item) => item.slug !== product.slug).slice(0, 2 - related.length);
+  const fallback = products.filter((item) => item.slug !== product.slug && !related.includes(item)).slice(0, 2 - related.length);
   const suggestions = [...related, ...fallback];
   const discount = product.oldPrice ? Math.round((1 - product.price / product.oldPrice) * 100) : 0;
   return <>

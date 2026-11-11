@@ -304,9 +304,13 @@ main{overflow:hidden}
 .simple-page{padding:96px 0 140px;min-height:640px}
 .narrow{max-width:900px}
 .simple-page>div>p{font-size:18px;color:var(--muted);margin:28px 0}
-.legal-placeholder{margin-top:48px;padding:36px;max-width:760px;border-radius:var(--r-xl);background:#fff;box-shadow:var(--shadow-soft)}
-.legal-placeholder p{font-size:15px!important;line-height:1.65;margin:0 0 20px!important}
-.legal-placeholder p:last-child{margin-bottom:0!important}
+.legal-doc{margin-top:48px;padding:36px;max-width:760px;border-radius:var(--r-xl);background:#fff;box-shadow:var(--shadow-soft)}
+.legal-doc p,.legal-doc li{font-size:15px!important;line-height:1.65;margin:0 0 14px!important;max-width:none!important}
+.legal-doc ul{padding-left:20px;margin:0 0 14px}
+.legal-doc h2{font-size:20px;font-weight:500;letter-spacing:-.01em;margin:32px 0 12px}
+.legal-doc a{color:var(--blue,#1769FF)}
+.legal-doc .legal-date{color:var(--muted-2);font-size:13px!important}
+.legal-doc p:last-child{margin-bottom:0!important}
 
 /* Корзина */
 .header-actions{display:flex;align-items:center;gap:8px}
@@ -517,6 +521,6 @@ main{overflow:hidden}
   .checkout-panel{padding:22px;border-radius:var(--r-lg)}
   .thanks-page{min-height:600px;border-radius:var(--r-lg)}
   .simple-page{padding-top:64px}
-  .legal-placeholder{margin-top:36px;padding:24px}
+  .legal-doc{margin-top:36px;padding:24px 18px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}

@@ -1,1 +1,25 @@
-export function LegalPage({ title }: { title: string }) { return <section className="simple-page legal-page"><div className="container narrow"><div className="descriptor">ЮРИДИЧЕСКАЯ ИНФОРМАЦИЯ</div><h1>{title}</h1><div className="legal-placeholder"><p><strong>Текст-плейсхолдер для первой версии</strong></p><p>Перед запуском продаж здесь будет размещён согласованный юридический текст с реквизитами продавца, условиями приобретения цифровых товаров, порядком обработки данных и контактами</p><p>Дата редакции, реквизиты и порядок обращения будут добавлены вместе с подключением оплаты</p></div></div></section>; }
+import type { ReactNode } from "react";
+import { seller } from "@/data/seller";
+
+// Страница юридического документа: заголовок, дата редакции, текст и реквизиты продавца
+export function LegalPage({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <section className="simple-page legal-page">
+      <div className="container narrow">
+        <div className="descriptor">ЮРИДИЧЕСКАЯ ИНФОРМАЦИЯ</div>
+        <h1>{title}</h1>
+        <div className="legal-doc">
+          <p className="legal-date">Редакция от {seller.updated}</p>
+          {children}
+          <h2>Реквизиты</h2>
+          <p>
+            {seller.name}, {seller.status}<br />
+            ИНН {seller.inn}<br />
+            Email: <a href={`mailto:${seller.email}`}>{seller.email}</a><br />
+            Сайт: <a href={seller.siteUrl}>{seller.site}</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,6 +1,7 @@
 import { asset } from "@/lib/asset";
 import Image from "next/image";
 import Link from "next/link";
+import { seller } from "@/data/seller";
 
 export function Footer() {
   return (
@@ -18,12 +19,13 @@ export function Footer() {
           </div>
           <div>
             <div className="descriptor">ИНФОРМАЦИЯ</div>
-            <Link href="/offer">Оферта</Link>
-            <Link href="/privacy">Политика конфиденциальности</Link>
-            <a href="https://t.me/" target="_blank" rel="noreferrer">Написать в Telegram</a>
+            <Link href="/offer/">Оферта</Link>
+            <Link href="/privacy/">Политика обработки данных</Link>
+            <Link href="/consent/">Согласие на обработку данных</Link>
+            <a href={`mailto:${seller.email}`}>{seller.email}</a>
           </div>
         </div>
-        <div className="footer-bottom"><span>© 2026 Иван Панькин</span><span>Первая версия магазина</span></div>
+        <div className="footer-bottom"><span>© 2026 Иван Панькин</span><span>{seller.name} · ИНН {seller.inn}</span></div>
       </div>
     </footer>
   );

@@ -11,6 +11,8 @@ export type Product = {
   priceUnit?: string; // «/мес»
   priceNote?: string; // расшифровка тарифов на странице товара
   externalUrl?: string; // товар покупается не через сайт (например, Telegram-бот)
+  pageUrl?: string; // своя страница вместо /product/<slug> (тарифы курса ведут на /course)
+  access?: string; // вместо ссылки на файл в письме после оплаты — этот текст про доступ
   image?: string; // своя обложка из public/, вместо сгенерированного превью
   video?: string; // зацикленное видео-превью сайта (mp4 без звука), image — постер
   imageBg?: string; // цвет подложки под картинку
@@ -31,7 +33,50 @@ export type Product = {
   createdAt: string;
 };
 
-export const products: Product[] = [
+// Тарифы курса «Вау-сайты через Claude Code»: в каталоге карточками, «Подробнее» ведёт на /course
+const courseAccess = "Доступ к урокам курса «Вау-сайты через Claude Code» пришлю лично в Telegram, который вы указали при заказе. Если сообщения долго нет — просто ответьте на это письмо";
+export const courseTariffs: Product[] = [
+  {
+    slug: "course-record",
+    title: "Курс «Вау-сайты через Claude Code» — запись курса",
+    category: "Курсы",
+    price: 9990,
+    pageUrl: "/course/",
+    image: "/course/demo-kaffa.jpg",
+    video: "/course/demo-kaffa.mp4",
+    imageBg: "#EFE6DA",
+    access: courseAccess,
+    volume: ["4 модуля", "Видеоуроки"],
+    ai: ["Claude Code"],
+    description: "Видеокурс: вау-сайты через Claude Code — от установки до сдачи клиенту",
+    contents: ["4 модуля видеоуроков", "Фразы к каждому уроку", "Демо-проекты для разбора"],
+    audience: ["Веб-дизайнерам", "Фрилансерам", "Новичкам без кода"],
+    preview: { eyebrow: "Курс", result: "Вау-сайты через Claude Code" },
+    popularity: 0,
+    createdAt: "2026-11-11",
+  },
+  {
+    slug: "course-feedback",
+    title: "Курс «Вау-сайты через Claude Code» — с обратной связью",
+    category: "Курсы",
+    price: 29990,
+    pageUrl: "/course/",
+    image: "/course/demo-mirra.jpg",
+    video: "/course/demo-mirra.mp4",
+    imageBg: "#EFE6DA",
+    access: courseAccess + ". Там же договоримся, как будем разбирать ваш проект",
+    volume: ["4 модуля", "Обратная связь от Ивана"],
+    ai: ["Claude Code"],
+    description: "Видеокурс с обратной связью лично от Ивана по вашему проекту",
+    contents: ["Всё из тарифа «Запись курса»", "Обратная связь лично от Ивана по вашему проекту", "Ответы на вопросы по ходу курса"],
+    audience: ["Веб-дизайнерам", "Фрилансерам", "Новичкам без кода"],
+    preview: { eyebrow: "Курс", result: "Вау-сайты через Claude Code" },
+    popularity: 0,
+    createdAt: "2026-11-11",
+  },
+];
+
+const catalogItems: Product[] = [
   {
     slug: "scroll-video-site",
     title: "Живой сайт со скролл-видео — под любую нишу",
@@ -149,12 +194,18 @@ export const products: Product[] = [
   },
 ];
 
+export const products: Product[] = [...catalogItems, ...courseTariffs];
+// сервис оплаты импортирует allProducts — оставлено как синоним
+export const allProducts = products;
+
+export const productHref = (item: Product) => item.pageUrl ?? `/product/${item.slug}/`;
+
 export const categories = (["Все", ...new Set(products.map((item) => item.category))] as const).map((name) => ({
   name,
   count: name === "Все" ? products.length : products.filter((item) => item.category === name).length,
 }));
 
-export const getProduct = (slug: string) => products.find((item) => item.slug === slug);
+export const getProduct = (slug: string) => allProducts.find((item) => item.slug === slug);
 
 export const formatPrice = (value: number) => new Intl.NumberFormat("ru-RU").format(value) + " ₽";
 

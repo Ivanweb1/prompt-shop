@@ -8,7 +8,7 @@ import { asset } from "@/lib/asset";
 import { formatPrice, getProduct, priceLabel, products } from "@/data/products";
 import { AddToCartButton } from "@/components/AddToCartButton";
 
-export function generateStaticParams() { return products.map((item) => ({ slug: item.slug })); }
+export function generateStaticParams() { return products.filter((item) => !item.pageUrl).map((item) => ({ slug: item.slug })); }
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

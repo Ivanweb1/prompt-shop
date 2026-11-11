@@ -4,6 +4,9 @@
 main:has(.course){overflow:visible}
 .course{overflow-x:clip}
 .course h2{font-weight:300}
+/* блоки курса плотнее, чем на главной магазина */
+.course .section{padding:72px 0}
+.course .section-heading{margin-bottom:36px}
 .c-link{font-size:14px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line-strong);padding-bottom:2px;transition:color .2s,border-color .2s}
 .c-link:hover{color:var(--blue);border-color:var(--blue)}
 .c-link.light{color:#fff;border-color:rgba(255,255,255,.4)}
@@ -82,23 +85,24 @@ main:has(.course){overflow:visible}
 .c-term-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 20px 14px}
 .c-term-chips button{border:1px solid rgba(255,255,255,.14);background:transparent;border-radius:999px;padding:7px 12px;font-size:12px;color:rgba(255,255,255,.75);cursor:pointer;transition:background .2s,color .2s}
 .c-term-chips button:hover{background:#fff;color:var(--ink)}
-.c-term-out{margin:0;min-height:236px;padding:18px 22px;border-top:1px solid rgba(255,255,255,.08);font:13px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap}
+.c-term-stage{border-top:1px solid rgba(255,255,255,.08);min-height:300px}
+.c-term-out{margin:0;min-height:300px;padding:18px 22px;font:13px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap}
 .c-term-out .cmd{color:#8FB6FF}
 .c-term-out .ok{color:#7CE3A1}
 .c-term-muted{color:rgba(255,255,255,.35)}
 .c-term-caret{animation:c-blink 1s steps(1) infinite;color:#8FB6FF}
 @keyframes c-blink{50%{opacity:0}}
+.c-term-result{padding:16px 18px;animation:c-pop .5s cubic-bezier(.2,.7,.2,1)}
+.c-term-result .c-browser{box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.c-term-result .c-demo-video{aspect-ratio:16/10;height:auto}
+.c-term-result-row{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;margin-top:12px;font-size:13px;color:rgba(255,255,255,.65)}
+.c-term-result-row span{flex:1;min-width:160px}
+.c-term-result-row a{color:#8FB6FF;font-weight:600}
+.c-term-result-row button{border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;border-radius:999px;padding:7px 14px;font-size:12px;cursor:pointer}
+.c-term-result-row button:hover{background:#fff;color:var(--ink)}
+@keyframes c-pop{from{opacity:0;transform:translateY(16px) scale(.97)}}
 .c-term-note{margin:0;padding:12px 22px 18px;font-size:12px;color:rgba(255,255,255,.4)}
 
-/* Расчёт */
-.c-money-card{position:relative;display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;padding:64px;border-radius:var(--r-xl);background:var(--grad-sky);color:#fff;overflow:hidden}
-.c-money-card h2{font-size:clamp(38px,4.2vw,62px);line-height:1.02;letter-spacing:-.04em;margin:0}
-.c-money-card .highlight{color:#fff;border-bottom:2px solid rgba(255,255,255,.5)}
-.c-money-card p{margin:22px 0 0;font-size:15px;line-height:1.55;color:rgba(255,255,255,.78);max-width:480px}
-.c-money-card dl{margin:0;display:grid;gap:10px}
-.c-money-card dl div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:20px 24px;border-radius:var(--r-md);background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(12px)}
-.c-money-card dt{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.75)}
-.c-money-card dd{margin:0;font-size:26px;font-weight:300;letter-spacing:-.03em}
 
 /* Для кого */
 .c-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
@@ -136,17 +140,13 @@ main:has(.course){overflow:visible}
 .c-alex dl div{padding:18px 20px;border-radius:var(--r-md);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16)}
 .c-alex dt{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blue-light);margin-bottom:6px}
 .c-alex dd{margin:0;font-size:15px;line-height:1.55}
-.c-alex-shots{display:grid;grid-template-columns:.8fr 1fr;gap:12px;align-items:start}
+.c-alex-shots{display:flex;align-items:center}
 .c-shot{margin:0}
 .c-shot img{display:block;width:100%;border-radius:var(--r-md);box-shadow:0 20px 50px rgba(0,0,0,.35)}
 .c-shot figcaption{margin-top:10px;font-size:12px;color:rgba(255,255,255,.7)}
-.c-shot-tall img{max-height:480px;object-fit:cover;object-position:top}
 .c-subhead{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;margin:0 0 14px}
 .c-subhead b{font-size:20px;font-weight:500;letter-spacing:-.02em}
 .c-subhead span{font-size:13px;color:var(--muted)}
-.c-alex-works{margin-top:28px}
-.c-alex-works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.c-alex-works-grid img{display:block;width:100%;aspect-ratio:1440/994;object-fit:cover;border-radius:var(--r-lg);box-shadow:var(--shadow-soft);background:#fff}
 .c-video-reviews{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
 .c-vreview{display:flex;flex-direction:column;gap:22px;padding:32px;border-radius:var(--r-xl);background:#fff;box-shadow:var(--shadow-soft)}
 .c-vreview p{margin:0;font-size:clamp(19px,1.7vw,24px);font-weight:300;line-height:1.4;letter-spacing:-.02em;flex:1}
@@ -159,13 +159,6 @@ main:has(.course){overflow:visible}
 .c-modal-box iframe{width:100%;height:100%;border:0;display:block}
 .c-modal-close{position:absolute;top:10px;right:10px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.9);font-size:24px;line-height:1;cursor:pointer}
 
-/* Бегущая лента работ */
-.c-works .section-heading{margin-bottom:40px}
-.c-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
-.c-marquee-track{display:flex;gap:14px;width:max-content;animation:c-marquee var(--c-speed,60s) linear infinite}
-.c-marquee:hover .c-marquee-track{animation-play-state:paused}
-.c-marquee img{height:clamp(220px,26vw,380px);width:auto;border-radius:var(--r-lg);box-shadow:var(--shadow-soft);display:block}
-@keyframes c-marquee{to{transform:translateX(calc(-50% - 7px))}}
 
 /* Спрос */
 .c-demand-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:12px}
@@ -196,10 +189,10 @@ main:has(.course){overflow:visible}
 .c-need{display:flex;flex-wrap:wrap;align-items:center;gap:10px 28px;margin-top:16px;padding:22px 28px;border-radius:var(--r-lg);background:#fff;box-shadow:var(--shadow-soft);font-size:14px;color:var(--muted)}
 .c-need b{color:var(--ink);font-weight:600;margin-right:8px}
 .c-need i{font-style:normal;color:var(--ink);font-weight:500;margin-right:6px}
-@media(prefers-reduced-motion:reduce){.c-marquee-track,.c-orders-track{animation:none}}
+@media(prefers-reduced-motion:reduce){.c-orders-track{animation:none}}
 
 /* Финал */
-.c-final{padding:0 0 120px}
+.c-final{padding:0 0 72px}
 .c-final-card{position:relative;overflow:hidden;padding:88px 64px;border-radius:var(--r-xl);background:var(--ink);color:#fff;text-align:center}
 .c-final-card h2{font-size:clamp(40px,5vw,80px);line-height:1;letter-spacing:-.05em;margin:0}
 .c-final-card .highlight{color:var(--blue-light)}
@@ -214,8 +207,7 @@ main:has(.course){overflow:visible}
 }
 @media(max-width:900px){
   .c-hero-stage{grid-template-columns:1fr 38%;gap:32px;padding:56px 36px}
-  .c-try-grid,.c-money-card,.c-compare,.c-demand-grid,.c-tariff-grid{grid-template-columns:1fr}
-  .c-money-card{padding:40px 28px}
+  .c-try-grid,.c-compare,.c-demand-grid,.c-tariff-grid{grid-template-columns:1fr}
   .c-modules summary{grid-template-columns:1fr 40px;gap:8px 12px}
   .c-modules summary .c-mod-num{grid-column:1}
   .c-modules summary b{grid-column:1}
@@ -224,6 +216,9 @@ main:has(.course){overflow:visible}
   .c-modules ol{padding:0 24px 18px}
 }
 @media(max-width:768px){
+  .course .section{padding:48px 0}
+  .course .section-heading{margin-bottom:26px}
+  .c-final{padding:0 0 48px}
   .c-hero-stage{grid-template-columns:1fr;gap:36px;min-height:0;padding:40px 22px 28px}
   .c-hero-copy h1{font-size:clamp(40px,11vw,56px)}
   .c-hero-copy>p{font-size:16px;margin-top:18px}
@@ -233,7 +228,7 @@ main:has(.course){overflow:visible}
   .course .highlight{white-space:normal}
   .c-demos{grid-template-columns:1fr}
   .c-demo-info{flex-direction:column;align-items:flex-start;padding:18px 20px 22px}
-  .c-steps,.c-cards,.c-video-reviews,.c-alex-works-grid{grid-template-columns:1fr}
+  .c-steps,.c-cards,.c-video-reviews{grid-template-columns:1fr}
   .c-card b{margin-top:24px}
   .c-final-card{padding:56px 24px}
   .c-modules summary{padding:20px}

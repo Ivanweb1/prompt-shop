@@ -7,7 +7,6 @@ import { CourseHero } from "@/components/course/CourseHero";
 import { DemoVideo } from "@/components/course/DemoVideo";
 import { PromptDemo } from "@/components/course/PromptDemo";
 import { ReviewVideo } from "@/components/course/ReviewVideo";
-import { Marquee } from "@/components/course/Marquee";
 import { seller } from "@/data/seller";
 import "./course.css";
 
@@ -51,12 +50,6 @@ const reviews = [
   { name: "Ангелина", avatar: "avatar-angelina", video: "dD8dMa1Gsbw6FgLZSxtr95", ratio: "9 / 16", text: "Курс Ивана помогает структурировать знания в веб-дизайне: понятное обучение, практика и поддержка" },
   { name: "Эльвира", avatar: "avatar-elvira", video: "fkFdwHWVZNseCYqwn8HAwZ", ratio: "1 / 1", text: "Работа с Иваном дала мне коммерческий опыт, реальные проекты для портфолио и уверенность в дальнейшей работе" },
 ];
-const alexWorks = [
-  ["alex-work-1", "Многостраничный сайт студии стрижки кошек и собак — первый заказ"],
-  ["alex-work-2", "Многостраничный сайт кофейни"],
-  ["alex-work-3", "Сайт Artelly"],
-];
-const works = Array.from({ length: 7 }, (_, i) => ({ src: asset(`/course/reviews/work-${i + 1}.webp`), alt: `Работа ученика курса по веб-дизайну ${i + 1}` }));
 const orders = Array.from({ length: 8 }, (_, i) => ({ src: asset(`/course/reviews/order-${i + 1}.webp`), alt: `Заявка на сайт из чата ${i + 1}` }));
 const vacancies = [
   ["vacancy-1", "Ведущий веб-дизайнер UX/UI — 120–150 тыс. ₽"],
@@ -65,8 +58,8 @@ const vacancies = [
   ["vacancy-4", "Веб-дизайнер (middle) — от 100 тыс. ₽"],
 ];
 const tariffs = [
-  { name: "Запись курса", tag: "Самостоятельно", price: "9 990 ₽", features: ["4 модуля видеоуроков", "Фразы к каждому уроку — копируете и работаете", "Демо-проекты из витрины для разбора"] },
-  { name: "С обратной связью", tag: "Лично от Ивана", featured: true, price: "29 990 ₽", features: ["Всё из тарифа «Запись курса»", "Обратная связь лично от Ивана по вашему проекту", "Ответы на вопросы по ходу курса"] },
+  { slug: "course-record", name: "Запись курса", tag: "Самостоятельно", price: "9 990 ₽", features: ["4 модуля видеоуроков", "Фразы к каждому уроку — копируете и работаете", "Демо-проекты из витрины для разбора"] },
+  { slug: "course-feedback", name: "С обратной связью", tag: "Лично от Ивана", featured: true, price: "29 990 ₽", features: ["Всё из тарифа «Запись курса»", "Обратная связь лично от Ивана по вашему проекту", "Ответы на вопросы по ходу курса"] },
 ];
 
 const faq = [
@@ -84,7 +77,7 @@ export default function CoursePage() {
       <CourseHero />
 
       <section className="section c-showcase" id="demos"><div className="container">
-        <div className="section-heading"><div><div className="descriptor">ВИТРИНА</div><h2>Вот что вы будете<br /><span className="highlight">делать</span></h2></div><p>Живые сайты — откройте любой и полистайте. Бренды вымышленные, сделано с ИИ</p></div>
+        <div className="section-heading"><div><div className="descriptor">ВИТРИНА</div><h2>Такие сайты вы научитесь<br /><span className="highlight">делать сами</span></h2></div><p>Каждый собран с ИИ по тому же пути, что в курсе: референс → кадры → видео → сайт. Откройте любой и полистайте — бренды вымышленные</p></div>
         <div className="c-demos">
           {demos.map((d) => (
             <a key={d.slug} href={d.url} target="_blank" rel="noreferrer" className="c-demo">
@@ -121,19 +114,8 @@ export default function CoursePage() {
       </div></section>
 
       <section className="section c-try" id="try"><div className="container c-try-grid">
-        <div><div className="descriptor">ПОПРОБУЙТЕ</div><h2>Опишите сайт —<br /><span className="highlight">получите план</span></h2><p className="c-lead">Так выглядит начало работы: вы пишете задачу словами, Claude раскладывает её на шаги и собирает</p></div>
+        <div><div className="descriptor">ПОПРОБУЙТЕ</div><h2>Напишите промпт —<br /><span className="highlight">получите сайт</span></h2><p className="c-lead">Так выглядит работа в курсе: вы пишете задачу словами, Claude раскладывает её на шаги и собирает сайт</p></div>
         <PromptDemo />
-      </div></section>
-
-      <section className="section c-money"><div className="container">
-        <div className="c-money-card">
-          <div><div className="descriptor light-muted">ПРИМЕР РАСЧЁТА</div><h2>Два сайта в месяц —<br />уже <span className="highlight">200 000 ₽</span></h2><p>При чеке от 100 000 ₽ за вау-сайт. Это пример расчёта, а не обещание дохода: всё зависит от того, как вы ищете клиентов</p></div>
-          <dl>
-            <div><dt>Сайтов в месяц</dt><dd>2</dd></div>
-            <div><dt>Чек</dt><dd>от 100 000 ₽</dd></div>
-            <div><dt>Инструменты в месяц</dt><dd>≈ 2 300 ₽</dd></div>
-          </dl>
-        </div>
       </div></section>
 
       <section className="section c-audience"><div className="container">
@@ -172,7 +154,7 @@ export default function CoursePage() {
             <div className="c-person">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={asset("/course/reviews/avatar-alexander.webp")} alt="Александр" width={72} height={72} />
-              <div><b>Александр</b><span>Кейс ученика</span></div>
+              <div><b>Александр</b><span>Ученик курса по веб-дизайну</span></div>
             </div>
             <dl>
               <div><dt>До</dt><dd>Работал на обычной офлайн-работе, с веб-дизайном связан не был</dd></div>
@@ -181,28 +163,13 @@ export default function CoursePage() {
             </dl>
           </div>
           <div className="c-alex-shots">
-            <figure className="c-shot c-shot-tall">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={asset("/course/reviews/alex-message.webp")} alt="Сообщение Александра: клиентка с Профи.ру перевела предоплату 15 000 из 30 000 ₽" loading="lazy" />
-              <figcaption>Первая предоплата: 15 000 из 30 000 ₽</figcaption>
-            </figure>
             <figure className="c-shot">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={asset("/course/reviews/alex-review.webp")} alt="Отзыв Александра о курсе в переписке" loading="lazy" />
-              <figcaption>Отзыв Александра в переписке</figcaption>
+              <figcaption>Отзыв Александра</figcaption>
             </figure>
           </div>
         </article>
-
-        <div className="c-alex-works">
-          <div className="c-subhead"><b>Работы Александра</b><span>после курса</span></div>
-          <div className="c-alex-works-grid">
-            {alexWorks.map(([file, alt]) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img key={file} src={asset(`/course/reviews/${file}.webp`)} alt={alt} loading="lazy" />
-            ))}
-          </div>
-        </div>
 
         <div className="c-video-reviews">
           {reviews.map((r) => (
@@ -218,12 +185,6 @@ export default function CoursePage() {
           ))}
         </div>
       </div></section>
-
-      <section className="section c-works"><div className="container">
-        <div className="section-heading"><div><div className="descriptor">УРОВЕНЬ РАБОТ</div><h2>Так выглядят работы<br /><span className="highlight">после курса</span></h2></div><p>Работы с моего курса по веб-дизайну. С Claude Code к такому уровню добавляется живая анимация</p></div>
-      </div>
-        <Marquee items={works} className="c-marquee-works" speed={70} />
-      </section>
 
       <section className="section c-demand"><div className="container">
         <div className="section-heading"><div><div className="descriptor">СПРОС</div><h2>Сайты нужны <span className="highlight">каждый день</span></h2></div><p>Скрины вакансий и заявок на сайты из чатов. Работа есть и в найме, и на фрилансе</p></div>
@@ -252,7 +213,7 @@ export default function CoursePage() {
       </div></section>
 
       <section className="section c-tariffs" id="start"><div className="container">
-        <div className="section-heading centered"><div className="descriptor">ТАРИФЫ</div><h2>Два формата <span className="highlight">участия</span></h2><p>Выберите формат и напишите в Telegram — пришлю реквизиты и доступ</p></div>
+        <div className="section-heading centered"><div className="descriptor">ТАРИФЫ</div><h2>Два формата <span className="highlight">участия</span></h2><p>Оплата картой или по СБП через ЮKassa. После оплаты пришлю доступ в Telegram</p></div>
         <div className="c-tariff-grid">
           {tariffs.map((t) => (
             <div key={t.name} className={`c-tariff ${t.featured ? "featured" : ""}`}>
@@ -261,7 +222,7 @@ export default function CoursePage() {
               <h3>{t.name}</h3>
               <ul>{t.features.map((f) => <li key={f}>{f}</li>)}</ul>
               <div className="c-tariff-price"><b>{t.price}</b></div>
-              <a className={`button button-wide ${t.featured ? "button-light" : "button-dark"}`} href={tg} target="_blank" rel="noreferrer">Хочу этот тариф <span aria-hidden><Chevron /></span></a>
+              <Link className={`button button-wide ${t.featured ? "button-light" : "button-dark"}`} href={`/checkout/?type=product&item=${t.slug}`}>Оплатить {t.price} <span aria-hidden><Chevron /></span></Link>
             </div>
           ))}
         </div>

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { KeyboardEvent, useEffect, useMemo, useRef, useState } from "react";
-import { priceLabel, products } from "@/data/products";
+import { priceLabel, productHref, products } from "@/data/products";
 
 // Запросы, которые «печатаются» в пустом поле — все находят что-то в каталоге
 const HINTS = ["парсер 2ГИС", "рассылки в Telegram", "база компаний без сайта"];
@@ -104,7 +104,7 @@ export function HeaderSearch({ className = "", onNavigate }: { className?: strin
           {results.length === 0
             ? <p className="search-empty">Ничего не нашли — попробуйте другое слово</p>
             : results.map((item, index) => (
-                <Link key={item.slug} href={`/product/${item.slug}/`} className={index === cursor ? "active" : ""} onMouseEnter={() => setCursor(index)} onClick={() => { setQuery(""); setFocused(false); onNavigate?.(); }}>
+                <Link key={item.slug} href={productHref(item)} className={index === cursor ? "active" : ""} onMouseEnter={() => setCursor(index)} onClick={() => { setQuery(""); setFocused(false); onNavigate?.(); }}>
                   <span><small>{item.category}</small><b>{item.title}</b></span>
                   <em>{priceLabel(item)}</em>
                 </Link>

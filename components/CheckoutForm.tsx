@@ -6,7 +6,7 @@ import { FormEvent, useState } from "react";
 import type { CartItem } from "@/lib/cart";
 import { submitOrder } from "@/lib/order";
 
-export function CheckoutForm({ items }: { items: CartItem[] }) {
+export function CheckoutForm({ items, isCourse = false }: { items: CartItem[]; isCourse?: boolean }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -25,7 +25,7 @@ export function CheckoutForm({ items }: { items: CartItem[] }) {
   }
   return (
     <form className="checkout-form" onSubmit={handleSubmit}>
-      <label><span>Email для получения материала</span><input name="email" type="email" placeholder="hello@example.com" required autoComplete="email" /></label>
+      <label><span>{isCourse ? "Email для чека и письма" : "Email для получения материала"}</span><input name="email" type="email" placeholder="hello@example.com" required autoComplete="email" /></label>
       <label>
         <span>Telegram</span>
         <span className="input-prefix"><i aria-hidden>@</i><input name="telegram" type="text" placeholder="username" required autoComplete="off" spellCheck={false} pattern="@?[A-Za-z0-9_]{5,32}" title="Юзернейм Telegram: латиница, цифры и _, от 5 символов" /></span>
@@ -36,7 +36,7 @@ export function CheckoutForm({ items }: { items: CartItem[] }) {
       <label className="consent consent-ads"><input name="ads" type="checkbox" /><span>Даю <Link href="/ads-consent/" target="_blank">согласие на получение рекламных рассылок</Link> о новых материалах и скидках (необязательно)</span></label>
       <button className="button button-blue button-wide" disabled={loading || items.length === 0}>{loading ? "Готовим заказ" : "Оплатить"}<span aria-hidden><Chevron /></span></button>
       {error && <p className="form-note form-error" role="alert">{error}</p>}
-      <p className="form-note">Оплата на странице ЮKassa: карта, СБП, SberPay, T-Pay. Материал придёт на email сразу после оплаты</p>
+      <p className="form-note">Оплата на странице ЮKassa: карта, СБП, SberPay, T-Pay. {isCourse ? "После оплаты пришлю доступ к курсу в Telegram" : "Материал придёт на email сразу после оплаты"}</p>
     </form>
   );
 }

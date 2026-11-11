@@ -8,7 +8,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import nodemailer from "nodemailer";
-import { products } from "../data/products.ts";
+import { allProducts as products } from "../data/products.ts";
 import { bundles } from "../data/bundles.ts";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -87,16 +87,22 @@ function findFile(slug) {
 // ---------- письма ----------
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 async function sendMaterials({ email, telegram, ads, lines, amount, paymentId }) {
-  const links = downloadLinks(lines.flatMap((l) => l.slugs));
+  const slugs = lines.flatMap((l) => l.slugs);
+  // курс и подобное: вместо ссылки на файл — текст про доступ из каталога
+  const accessItems = slugs.map((slug) => products.find((x) => x.slug === slug)).filter((p) => p?.access);
+  const links = downloadLinks(slugs.filter((slug) => !accessItems.some((p) => p.slug === slug)));
   const list = links.map((l) => `<li style="margin:0 0 12px"><b>${esc(l.title)}</b><br><a href="${l.url}">Скачать</a></li>`).join("");
+  const accessHtml = accessItems.map((p) => `<p style="margin:0 0 12px"><b>${esc(p.title)}</b><br>${esc(p.access)}</p>`).join("");
+  const accessText = accessItems.map((p) => `${p.title}\n${p.access}`).join("\n\n");
+  const linksText = links.map((l) => `${l.title}\n${l.url}`).join("\n\n");
   await mailer.sendMail({
     from: { name: "Иван Панькин", address: env.SMTP_USER },
     to: email,
-    subject: "Ваши материалы — creative-ai.shop",
-    text: `Спасибо за покупку!\n\n${links.map((l) => `${l.title}\n${l.url}`).join("\n\n")}\n\nСсылки работают ${DOWNLOAD_DAYS} дней. Вопросы — ответьте на это письмо.`,
+    subject: links.length ? "Ваши материалы — creative-ai.shop" : "Ваш заказ — creative-ai.shop",
+    text: `Спасибо за покупку!\n\n${[accessText, linksText].filter(Boolean).join("\n\n")}${links.length ? `\n\nСсылки работают ${DOWNLOAD_DAYS} дней.` : ""}\n\nВопросы — ответьте на это письмо.`,
     html: `<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.5;color:#111">
-<p>Спасибо за покупку!</p><ul style="padding-left:18px">${list}</ul>
-<p style="color:#666">Ссылки работают ${DOWNLOAD_DAYS} дней. Если что-то не открывается — просто ответьте на это письмо.</p></div>`,
+<p>Спасибо за покупку!</p>${accessHtml}${list ? `<ul style="padding-left:18px">${list}</ul>` : ""}
+<p style="color:#666">${links.length ? `Ссылки работают ${DOWNLOAD_DAYS} дней. ` : ""}Если что-то не так — просто ответьте на это письмо.</p></div>`,
   });
   // уведомление владельцу — в свой же ящик
   await mailer.sendMail({

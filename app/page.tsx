@@ -49,7 +49,7 @@ export default function Home() {
               <div><h2>От идеи до готового результата</h2><p>Промпты, инструкции, скиллы и гайды, которые помогают пройти путь от идеи до готового результата</p></div>
             </div>
             {categories.slice(1).map((item, index) => (
-              <a href="#catalog" className={`cat-card ${categoryTones[index]}`} key={item.name}>
+              <a href={item.name === "Курсы" ? asset("/course/") : "#catalog"} className={`cat-card ${categoryTones[index]}`} key={item.name}>
                 {categoryTones[index] && <Track className="cat-track" />}
                 <span className="cat-card-top"><span>{String(index + 1).padStart(2, "0")}</span><span>{item.count} {plural(item.count, "материал", "материала", "материалов")}</span></span>
                 <strong>{item.name}</strong>

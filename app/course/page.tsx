@@ -6,6 +6,8 @@ import { Track } from "@/components/Track";
 import { CourseHero } from "@/components/course/CourseHero";
 import { DemoVideo } from "@/components/course/DemoVideo";
 import { PromptDemo } from "@/components/course/PromptDemo";
+import { ReviewVideo } from "@/components/course/ReviewVideo";
+import { Marquee } from "@/components/course/Marquee";
 import { seller } from "@/data/seller";
 import "./course.css";
 
@@ -44,9 +46,27 @@ const modules = [
   { title: "Перенос и сдача", ready: false, lessons: ["Перенос на Тильду через Vibe-блоки", "Перенос на WordPress", "Как сдать проект и назвать цену"] },
 ];
 
+// Отзывы, фото и скрины — со страницы курса по веб-дизайну ivan-web.online
 const reviews = [
-  { name: "Ангелина", text: "Курс Ивана помогает структурировать знания в веб-дизайне: понятное обучение, практика и поддержка" },
-  { name: "Эльвира", text: "Работа с Иваном дала мне коммерческий опыт, реальные проекты для портфолио и уверенность в дальнейшей работе" },
+  { name: "Ангелина", avatar: "avatar-angelina", video: "dD8dMa1Gsbw6FgLZSxtr95", ratio: "9 / 16", text: "Курс Ивана помогает структурировать знания в веб-дизайне: понятное обучение, практика и поддержка" },
+  { name: "Эльвира", avatar: "avatar-elvira", video: "fkFdwHWVZNseCYqwn8HAwZ", ratio: "1 / 1", text: "Работа с Иваном дала мне коммерческий опыт, реальные проекты для портфолио и уверенность в дальнейшей работе" },
+];
+const alexWorks = [
+  ["alex-work-1", "Многостраничный сайт студии стрижки кошек и собак — первый заказ"],
+  ["alex-work-2", "Многостраничный сайт кофейни"],
+  ["alex-work-3", "Сайт Artelly"],
+];
+const works = Array.from({ length: 7 }, (_, i) => ({ src: asset(`/course/reviews/work-${i + 1}.webp`), alt: `Работа ученика курса по веб-дизайну ${i + 1}` }));
+const orders = Array.from({ length: 8 }, (_, i) => ({ src: asset(`/course/reviews/order-${i + 1}.webp`), alt: `Заявка на сайт из чата ${i + 1}` }));
+const vacancies = [
+  ["vacancy-1", "Ведущий веб-дизайнер UX/UI — 120–150 тыс. ₽"],
+  ["vacancy-2", "UX/UI дизайнер — до 180 тыс. ₽"],
+  ["vacancy-3", "Веб-дизайнер — 100–150 тыс. ₽"],
+  ["vacancy-4", "Веб-дизайнер (middle) — от 100 тыс. ₽"],
+];
+const tariffs = [
+  { name: "Запись курса", tag: "Самостоятельно", features: ["4 модуля видеоуроков", "Фразы к каждому уроку — копируете и работаете", "Демо-проекты из витрины для разбора"] },
+  { name: "С обратной связью", tag: "Лично от Ивана", featured: true, features: ["Всё из тарифа «Запись курса»", "Обратная связь лично от Ивана по вашему проекту", "Ответы на вопросы по ходу курса"] },
 ];
 
 const faq = [
@@ -144,44 +164,113 @@ export default function CoursePage() {
         <div className="about-copy"><div className="descriptor">АВТОР</div><h2>Иван Панькин<br /><span className="highlight">арт-директор</span></h2><p className="about-lead">Больше четырёх лет в веб-дизайне, больше 100 сайтов для клиентов. Сейчас собираю сайты через Claude Code — и показываю в курсе, как именно</p><p>Через сайты, которые я сделал, клиенты заработали больше 500 млн ₽. Веду Instagram на 17 тысяч дизайнеров и Telegram-канал</p><div className="about-facts"><span><b>100+</b>сайтов</span><span><b>500 млн</b>выручки клиентов</span><span><b>17к+</b>в Instagram</span></div></div>
       </div></section>
 
-      <section className="section c-reviews"><div className="container">
-        <div className="section-heading"><div><div className="descriptor">ОТЗЫВЫ</div><h2>Ученики моего курса<br /><span className="highlight">по веб-дизайну</span></h2></div><p>Курс по Claude Code новый — здесь отзывы с моего первого курса</p></div>
-        <div className="c-review-grid">
-          <article className="c-case">
-            <span className="c-case-tag">Кейс ученика</span>
-            <h3>Александр</h3>
+      <section className="section c-reviews" id="reviews"><div className="container">
+        <div className="section-heading"><div><div className="descriptor">ОТЗЫВЫ</div><h2>Ученики моего курса<br /><span className="highlight">по веб-дизайну</span></h2></div><p>Курс по Claude Code новый — здесь отзывы, переписки и работы учеников моего первого курса</p></div>
+
+        <article className="c-alex">
+          <div className="c-alex-story">
+            <div className="c-person">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={asset("/course/reviews/avatar-alexander.webp")} alt="Александр" width={72} height={72} />
+              <div><b>Александр</b><span>Кейс ученика</span></div>
+            </div>
             <dl>
               <div><dt>До</dt><dd>Работал на обычной офлайн-работе, с веб-дизайном связан не был</dd></div>
               <div><dt>На обучении</dt><dd>Освоил Figma и Tilda, собрал 3 учебные работы, поработал над коммерческим проектом</dd></div>
               <div><dt>Результат</dt><dd>Первый заказ — многостраничный сайт за 30 000 ₽, обучение окупилось сразу. Сейчас заработал больше 100 000 ₽</dd></div>
             </dl>
-          </article>
-          {reviews.map((r) => <blockquote key={r.name} className="c-quote"><p>«{r.text}»</p><cite>{r.name}</cite></blockquote>)}
+          </div>
+          <div className="c-alex-shots">
+            <figure className="c-shot c-shot-tall">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={asset("/course/reviews/alex-message.webp")} alt="Сообщение Александра: клиентка с Профи.ру перевела предоплату 15 000 из 30 000 ₽" loading="lazy" />
+              <figcaption>Первая предоплата: 15 000 из 30 000 ₽</figcaption>
+            </figure>
+            <figure className="c-shot">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={asset("/course/reviews/alex-review.webp")} alt="Отзыв Александра о курсе в переписке" loading="lazy" />
+              <figcaption>Отзыв Александра в переписке</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <div className="c-alex-works">
+          <div className="c-subhead"><b>Работы Александра</b><span>после курса</span></div>
+          <div className="c-alex-works-grid">
+            {alexWorks.map(([file, alt]) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img key={file} src={asset(`/course/reviews/${file}.webp`)} alt={alt} loading="lazy" />
+            ))}
+          </div>
+        </div>
+
+        <div className="c-video-reviews">
+          {reviews.map((r) => (
+            <article key={r.name} className="c-vreview">
+              <div className="c-person">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={asset(`/course/reviews/${r.avatar}.webp`)} alt={r.name} width={72} height={72} loading="lazy" />
+                <div><b>{r.name}</b><span>Ученица курса по веб-дизайну</span></div>
+              </div>
+              <p>«{r.text}»</p>
+              <ReviewVideo id={r.video} name={r.name} ratio={r.ratio} />
+            </article>
+          ))}
         </div>
       </div></section>
 
-      <section className="section c-start" id="start"><div className="container c-start-grid">
-        <div className="c-start-need">
-          <div className="descriptor">ЧТО НУЖНО ДЛЯ СТАРТА</div>
-          <h2>Компьютер<br />и <span className="highlight">≈ 2 300 ₽</span> в месяц</h2>
-          <ul>
-            <li><b>Компьютер</b>Windows или Mac</li>
-            <li><b>Claude Pro</b>≈ 2 100 ₽ в месяц</li>
-            <li><b>VPN</b>≈ 200 ₽ в месяц</li>
-            <li><b>Код</b>знать не нужно</li>
-          </ul>
+      <section className="section c-works"><div className="container">
+        <div className="section-heading"><div><div className="descriptor">УРОВЕНЬ РАБОТ</div><h2>Так выглядят работы<br /><span className="highlight">после курса</span></h2></div><p>Работы с моего курса по веб-дизайну. С Claude Code к такому уровню добавляется живая анимация</p></div>
+      </div>
+        <Marquee items={works} className="c-marquee-works" speed={70} />
+      </section>
+
+      <section className="section c-demand"><div className="container">
+        <div className="section-heading"><div><div className="descriptor">СПРОС</div><h2>Сайты нужны <span className="highlight">каждый день</span></h2></div><p>Скрины вакансий и заявок на сайты из чатов. Работа есть и в найме, и на фрилансе</p></div>
+        <div className="c-demand-grid">
+          <div className="c-demand-col">
+            <div className="c-subhead"><b>Вакансии</b><span>100 000–180 000 ₽ на руки</span></div>
+            <div className="c-vacancies">
+              {vacancies.map(([file, alt]) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img key={file} src={asset(`/course/reviews/${file}.webp`)} alt={alt} loading="lazy" />
+              ))}
+            </div>
+          </div>
+          <div className="c-demand-col c-orders">
+            <div className="c-subhead"><b>Заявки на сайты</b><span>из чатов с заказами</span></div>
+            <div className="c-orders-window">
+              <div className="c-orders-track">
+                {[...orders, ...orders].map((o, i) => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img key={i} src={o.src} alt={i < orders.length ? o.alt : ""} aria-hidden={i >= orders.length} loading="lazy" />
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="c-price">
-          <Track className="c-price-track" rings={6} />
-          <div className="descriptor light-muted">УЧАСТИЕ</div>
-          <h3>Вау-сайты через Claude Code</h3>
-          <ul>
-            <li>4 модуля видеоуроков</li>
-            <li>Фразы к каждому уроку — копируете и работаете</li>
-            <li>Демо-проекты из витрины для разбора</li>
-          </ul>
-          <p className="c-price-note">Цена и дата старта появятся здесь. Напишите в Telegram — пришлю первым</p>
-          <a className="button button-light button-wide" href={tg} target="_blank" rel="noreferrer">Хочу на курс <span aria-hidden><Chevron /></span></a>
+      </div></section>
+
+      <section className="section c-tariffs" id="start"><div className="container">
+        <div className="section-heading centered"><div className="descriptor">ТАРИФЫ</div><h2>Два формата <span className="highlight">участия</span></h2><p>Цены и дата старта появятся здесь. Напишите в Telegram — пришлю первым</p></div>
+        <div className="c-tariff-grid">
+          {tariffs.map((t) => (
+            <div key={t.name} className={`c-tariff ${t.featured ? "featured" : ""}`}>
+              {t.featured && <Track className="c-price-track" rings={6} />}
+              <span className="c-tariff-tag">{t.tag}</span>
+              <h3>{t.name}</h3>
+              <ul>{t.features.map((f) => <li key={f}>{f}</li>)}</ul>
+              <div className="c-tariff-price"><b>Цена — скоро</b></div>
+              <a className={`button button-wide ${t.featured ? "button-light" : "button-dark"}`} href={tg} target="_blank" rel="noreferrer">Хочу этот тариф <span aria-hidden><Chevron /></span></a>
+            </div>
+          ))}
+        </div>
+        <div className="c-need">
+          <b>Что нужно для старта</b>
+          <span><i>Компьютер</i>Windows или Mac</span>
+          <span><i>Claude Pro</i>≈ 2 100 ₽ в месяц</span>
+          <span><i>VPN</i>≈ 200 ₽ в месяц</span>
+          <span><i>Код</i>знать не нужно</span>
         </div>
       </div></section>
 

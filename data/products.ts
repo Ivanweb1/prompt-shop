@@ -76,6 +76,8 @@ export const products: Product[] = [
     title: "Документы веб-дизайнера: договор, бриф, КП",
     category: "Шаблоны",
     price: 990,
+    image: "/products/designer-docs.jpg",
+    imageBg: "#D8E0F5",
     volume: ["5 документов Word", "Шаблон КП в Figma", "Скилл для Claude"],
     ai: ["Word", "Google Таблицы", "Figma", "Claude"],
     description: "Комплект, с которым проект на сайт проходит от первого созвона до сдачи без споров про правки и оплату: договор на три этапа с оплатой 50/50, бриф, акт, доп. соглашение и шаблон КП",

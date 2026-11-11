@@ -5,7 +5,6 @@ import { Chevron } from "@/components/Chevron";
 import { Track } from "@/components/Track";
 import { CourseHero } from "@/components/course/CourseHero";
 import { DemoVideo } from "@/components/course/DemoVideo";
-import { PromptDemo } from "@/components/course/PromptDemo";
 import { ReviewVideo } from "@/components/course/ReviewVideo";
 import { seller } from "@/data/seller";
 import "./course.css";
@@ -108,11 +107,6 @@ export default function CoursePage() {
           <div className="c-compare-old"><small>Обычно</small><b>Фигма → верстальщик → круги правок</b><p>Недели согласований, два исполнителя и вау-эффекты, которые «сложно сверстать»</p></div>
           <div className="c-compare-new"><Track className="c-compare-track" rings={5} /><small>С Claude Code</small><b>Вы и Claude</b><p>1–2 дня на сайт, эффекты собираются фразами, правки — за минуты</p></div>
         </div>
-      </div></section>
-
-      <section className="section c-try" id="try"><div className="container c-try-grid">
-        <div><div className="descriptor">ПОПРОБУЙТЕ</div><h2>Напишите промпт —<br /><span className="highlight">получите сайт</span></h2><p className="c-lead">Так выглядит работа в курсе: вы пишете задачу словами, Claude раскладывает её на шаги и собирает сайт</p></div>
-        <PromptDemo />
       </div></section>
 
       <section className="section c-audience"><div className="container">

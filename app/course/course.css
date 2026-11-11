@@ -10,7 +10,6 @@ main:has(.course){overflow:visible}
 .c-link{font-size:14px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line-strong);padding-bottom:2px;transition:color .2s,border-color .2s}
 .c-link:hover{color:var(--blue);border-color:var(--blue)}
 .c-link.light{color:#fff;border-color:rgba(255,255,255,.4)}
-.c-lead{font-size:18px;line-height:1.55;color:var(--muted);margin:24px 0 0;max-width:460px}
 
 /* Первый экран: текст + небольшое зацикленное превью демо-сайта */
 .c-hero{padding:4px 0 0}
@@ -65,37 +64,6 @@ main:has(.course){overflow:visible}
 .c-compare-new b{color:#fff}
 .c-compare-track{position:absolute;z-index:-1;width:560px;right:-200px;top:-40px;color:rgba(255,255,255,.16)}
 
-/* Мини-демо */
-.c-try-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
-.c-try h2{font-size:clamp(40px,4.6vw,68px);line-height:1.02;letter-spacing:-.04em;margin:0}
-.c-term{border-radius:var(--r-xl);background:#0D1420;color:#DCE4F0;box-shadow:var(--shadow-float);overflow:hidden}
-.c-term-bar{display:flex;align-items:center;gap:7px;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.08)}
-.c-term-bar i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.18)}
-.c-term-bar span{margin-left:10px;font-size:12px;color:rgba(255,255,255,.5)}
-.c-term-form{display:flex;gap:10px;padding:18px 20px 10px}
-.c-term-form input{flex:1;min-width:0;height:46px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#fff;padding:0 18px;font-size:15px;outline:none;transition:border-color .2s}
-.c-term-form input:focus{border-color:var(--blue)}
-.c-term-form input::placeholder{color:rgba(255,255,255,.4)}
-.c-term-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 20px 14px}
-.c-term-chips button{border:1px solid rgba(255,255,255,.14);background:transparent;border-radius:999px;padding:7px 12px;font-size:12px;color:rgba(255,255,255,.75);cursor:pointer;transition:background .2s,color .2s}
-.c-term-chips button:hover{background:#fff;color:var(--ink)}
-.c-term-stage{border-top:1px solid rgba(255,255,255,.08);min-height:300px}
-.c-term-out{margin:0;min-height:300px;padding:18px 22px;font:13px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap}
-.c-term-out .cmd{color:#8FB6FF}
-.c-term-out .ok{color:#7CE3A1}
-.c-term-muted{color:rgba(255,255,255,.35)}
-.c-term-caret{animation:c-blink 1s steps(1) infinite;color:#8FB6FF}
-@keyframes c-blink{50%{opacity:0}}
-.c-term-result{padding:16px 18px;animation:c-pop .5s cubic-bezier(.2,.7,.2,1)}
-.c-term-result .c-browser{box-shadow:0 20px 50px rgba(0,0,0,.4)}
-.c-term-result .c-demo-video{aspect-ratio:16/10;height:auto}
-.c-term-result-row{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;margin-top:12px;font-size:13px;color:rgba(255,255,255,.65)}
-.c-term-result-row span{flex:1;min-width:160px}
-.c-term-result-row a{color:#8FB6FF;font-weight:600}
-.c-term-result-row button{border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;border-radius:999px;padding:7px 14px;font-size:12px;cursor:pointer}
-.c-term-result-row button:hover{background:#fff;color:var(--ink)}
-@keyframes c-pop{from{opacity:0;transform:translateY(16px) scale(.97)}}
-.c-term-note{margin:0;padding:12px 22px 18px;font-size:12px;color:rgba(255,255,255,.4)}
 
 
 /* Для кого */
@@ -201,7 +169,6 @@ main:has(.course){overflow:visible}
 }
 @media(max-width:900px){
   .c-hero-stage{grid-template-columns:1fr 38%;gap:32px;padding:56px 36px}
-  .c-try-grid,.c-compare,.c-demand-grid,.c-tariff-grid{grid-template-columns:1fr}
   .c-modules summary{grid-template-columns:1fr 40px;gap:8px 12px}
   .c-modules summary .c-mod-num{grid-column:1}
   .c-modules summary b{grid-column:1}
@@ -227,6 +194,4 @@ main:has(.course){overflow:visible}
   .c-final-card{padding:56px 24px}
   .c-modules summary{padding:20px}
   .c-modules li{grid-template-columns:1fr;gap:2px}
-  .c-term-form{flex-direction:column}
-  .c-term-form .button{justify-content:space-between}
 }

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Chevron } from "@/components/Chevron";
 import { CheckoutForm } from "@/components/CheckoutForm";
 import { formatPrice } from "@/data/products";
-import { clearCart, describe, removeFromCart, useCart } from "@/lib/cart";
+import { describe, removeFromCart, useCart } from "@/lib/cart";
 
 export function CartPageContent() {
   const items = useCart();
@@ -33,7 +33,7 @@ export function CartPageContent() {
       </div>
       <div className="checkout-panel">
         <div className="order-summary"><span>Итого · {rows.length} {rows.length === 1 ? "позиция" : rows.length < 5 ? "позиции" : "позиций"}</span><strong className="order-total">{total === 0 ? "Бесплатно" : formatPrice(total)}</strong></div>
-        <CheckoutForm items={items} onSuccess={clearCart} />
+        <CheckoutForm items={items} />
       </div>
     </div></section>
   );

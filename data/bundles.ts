@@ -1,5 +1,4 @@
-import { products } from "./products";
-
+// Без импортов: файл читает и сервер оплаты (server/), а Node не понимает пути без расширения
 export type Bundle = {
   slug: string;
   title: string;
@@ -11,4 +10,3 @@ export type Bundle = {
 
 export const bundles: Bundle[] = [];
 export const getBundle = (slug: string) => bundles.find((item) => item.slug === slug);
-export const getBundleProducts = (bundle: Bundle) => products.filter((item) => bundle.productSlugs.includes(item.slug));

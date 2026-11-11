@@ -5,11 +5,11 @@ import Link from "next/link";
 import { Catalog } from "@/components/Catalog";
 import { Track } from "@/components/Track";
 import { HeroPreviews } from "@/components/HeroPreviews";
-import { bundles, getBundleProducts } from "@/data/bundles";
+import { bundles } from "@/data/bundles";
 import { categories, formatPrice, products } from "@/data/products";
 
 const bundle = bundles[0];
-const bundleProducts = bundle ? getBundleProducts(bundle) : [];
+const bundleProducts = bundle ? products.filter((item) => bundle.productSlugs.includes(item.slug)) : [];
 const bundleDiscount = bundle ? Math.round((1 - bundle.price / bundle.oldPrice) * 100) : 0;
 const plural = (n: number, one: string, few: string, many: string) => {
   const m10 = n % 10, m100 = n % 100;
@@ -19,10 +19,10 @@ const categoryTones = ["", "cat-sky", "", "cat-deep", "", ""];
 
 const faq = [
   ["Что такое промпт и как его использовать", "Промпт — это готовая инструкция для нейросети. Вы подставляете свои вводные, запускаете её в указанном сервисе и получаете структурированный результат"],
-  ["Как я получу материал", "После оформления заказ придёт на email. В первой версии работает демонстрационный сценарий, а автоматическая отправка появится вместе с оплатой"],
+  ["Как я получу материал", "Сразу после оплаты на email придёт письмо со ссылкой на скачивание. Ссылка работает 30 дней"],
   ["Подойдут ли материалы для моей нейросети", "На каждой странице указана совместимость. Большинство текстовых материалов можно использовать в Claude, ChatGPT и Gemini"],
   ["Можно ли вернуть цифровой товар", "Условия возврата будут закреплены в итоговой оферте до запуска продаж. Сейчас юридические страницы содержат текст-плейсхолдер"],
-  ["Как будет защищена оплата", "На втором этапе оплата пройдёт через ЮKassa. Данные банковской карты магазин получать и хранить не будет"],
+  ["Как защищена оплата", "Оплата проходит на защищённой странице ЮKassa: карта, СБП, SberPay или T-Pay. Данные карты магазин не получает и не хранит"],
 ];
 
 export default function Home() {

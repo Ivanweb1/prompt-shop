@@ -5,3 +5,9 @@ node_modules/
 .env*
 !.env.example
 npm-debug.log*
+
+# сервис оплаты
+server/node_modules
+server/state
+server/files/*
+!server/files/README.md

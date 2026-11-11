@@ -12,8 +12,15 @@ export function createCheckoutUrl(itemType: CartItem["type"], itemSlug: string) 
   return `/checkout?${params.toString()}`;
 }
 
-// Точка расширения второго этапа: здесь появится запрос к API-роуту ЮKassa
-export async function submitOrder(draft: OrderDraft) {
-  await new Promise((resolve) => setTimeout(resolve, 250));
-  return { ok: true, orderId: `demo-${draft.items.map((item) => item.slug).join("+")}` };
+// Заказ уходит на сервис оплаты (server/), он отвечает адресом страницы оплаты ЮKassa.
+// Сервис работает только на creative-ai.shop: на копии в GitHub Pages оплаты нет.
+export async function submitOrder(draft: OrderDraft): Promise<{ ok: true; redirect: string } | { ok: false; error: string }> {
+  try {
+    const res = await fetch("/api/pay", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(draft) });
+    const data = await res.json().catch(() => ({}));
+    if (res.ok && data.redirect) return { ok: true, redirect: data.redirect };
+    return { ok: false, error: data.error || "Оплата сейчас недоступна, попробуйте позже" };
+  } catch {
+    return { ok: false, error: "Нет связи с сервером, проверьте интернет и попробуйте ещё раз" };
+  }
 }

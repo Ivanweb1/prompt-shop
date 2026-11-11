@@ -294,6 +294,7 @@ main{overflow:hidden}
 .consent input{accent-color:var(--blue);margin-top:2px}
 .consent a{text-decoration:underline}
 .form-note{text-align:center;font-size:11px;color:var(--muted-2);margin:13px 0 0}
+.form-error{color:#c62828;font-size:13px}
 .checkout-form button:disabled{opacity:.65}
 .thanks-page{position:relative;width:min(100% - 64px,1360px);margin:4px auto 40px;padding:80px 24px;min-height:680px;border-radius:var(--r-xl);background:var(--grad-sky);display:grid;place-items:center;overflow:hidden}
 .thanks-card{max-width:760px;text-align:center;color:#fff;display:flex;flex-direction:column;align-items:center}

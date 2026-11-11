@@ -65,8 +65,8 @@ const vacancies = [
   ["vacancy-4", "Веб-дизайнер (middle) — от 100 тыс. ₽"],
 ];
 const tariffs = [
-  { name: "Запись курса", tag: "Самостоятельно", features: ["4 модуля видеоуроков", "Фразы к каждому уроку — копируете и работаете", "Демо-проекты из витрины для разбора"] },
-  { name: "С обратной связью", tag: "Лично от Ивана", featured: true, features: ["Всё из тарифа «Запись курса»", "Обратная связь лично от Ивана по вашему проекту", "Ответы на вопросы по ходу курса"] },
+  { name: "Запись курса", tag: "Самостоятельно", price: "9 990 ₽", features: ["4 модуля видеоуроков", "Фразы к каждому уроку — копируете и работаете", "Демо-проекты из витрины для разбора"] },
+  { name: "С обратной связью", tag: "Лично от Ивана", featured: true, price: "29 990 ₽", features: ["Всё из тарифа «Запись курса»", "Обратная связь лично от Ивана по вашему проекту", "Ответы на вопросы по ходу курса"] },
 ];
 
 const faq = [
@@ -252,7 +252,7 @@ export default function CoursePage() {
       </div></section>
 
       <section className="section c-tariffs" id="start"><div className="container">
-        <div className="section-heading centered"><div className="descriptor">ТАРИФЫ</div><h2>Два формата <span className="highlight">участия</span></h2><p>Цены и дата старта появятся здесь. Напишите в Telegram — пришлю первым</p></div>
+        <div className="section-heading centered"><div className="descriptor">ТАРИФЫ</div><h2>Два формата <span className="highlight">участия</span></h2><p>Выберите формат и напишите в Telegram — пришлю реквизиты и доступ</p></div>
         <div className="c-tariff-grid">
           {tariffs.map((t) => (
             <div key={t.name} className={`c-tariff ${t.featured ? "featured" : ""}`}>
@@ -260,7 +260,7 @@ export default function CoursePage() {
               <span className="c-tariff-tag">{t.tag}</span>
               <h3>{t.name}</h3>
               <ul>{t.features.map((f) => <li key={f}>{f}</li>)}</ul>
-              <div className="c-tariff-price"><b>Цена — скоро</b></div>
+              <div className="c-tariff-price"><b>{t.price}</b></div>
               <a className={`button button-wide ${t.featured ? "button-light" : "button-dark"}`} href={tg} target="_blank" rel="noreferrer">Хочу этот тариф <span aria-hidden><Chevron /></span></a>
             </div>
           ))}

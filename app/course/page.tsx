@@ -66,8 +66,8 @@ export default function CoursePage() {
       <section className="section c-showcase" id="demos"><div className="container">
         <div className="section-heading"><div><div className="descriptor">ВИТРИНА</div><h2>Вот что вы будете<br /><span className="highlight">делать</span></h2></div><p>Живые сайты — откройте любой и полистайте. Бренды вымышленные, сделано с ИИ</p></div>
         <div className="c-demos">
-          {demos.map((d, i) => (
-            <a key={d.slug} href={d.url} target="_blank" rel="noreferrer" className={`c-demo ${i === 0 ? "wide" : ""}`}>
+          {demos.map((d) => (
+            <a key={d.slug} href={d.url} target="_blank" rel="noreferrer" className="c-demo">
               <div className="c-demo-screen">
                 <DemoVideo src={asset(`/course/demo-${d.slug}.mp4`)} poster={asset(`/course/demo-${d.slug}.jpg`)} label={`Запись демо-сайта ${d.name}`} />
               </div>
@@ -77,6 +77,13 @@ export default function CoursePage() {
               </div>
             </a>
           ))}
+          <Link href="#start" className="c-demo c-demo-next">
+            <Track className="c-demo-next-track" rings={6} />
+            <span className="c-demo-niche">Ваша ниша</span>
+            <strong>Следующий вау-сайт —<br />ваш</strong>
+            <p>Кофейня, салон, застройщик или ваш клиент: на курсе соберёте такой же сайт под свою задачу</p>
+            <span className="c-demo-open">Как попасть на курс <Chevron /></span>
+          </Link>
         </div>
       </div></section>
 

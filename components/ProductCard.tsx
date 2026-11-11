@@ -1,6 +1,6 @@
-import { Chevron } from "@/components/Chevron";
 import Link from "next/link";
 import { Product, formatPrice, priceLabel } from "@/data/products";
+import { CartAddIcon } from "./CartAddIcon";
 import { ProductCover } from "./ProductCover";
 
 export function ProductCard({ product, index = 1 }: { product: Product; index?: number }) {
@@ -17,9 +17,12 @@ export function ProductCard({ product, index = 1 }: { product: Product; index?: 
         <div className="price-row">
           <strong>{priceLabel(product)}</strong>
           {product.oldPrice && <><s>{formatPrice(product.oldPrice)}</s><span className="discount">−{discount}%</span></>}
+          <div className="card-actions">
+            <Link href={`/product/${product.slug}`} className="card-more">Подробнее</Link>
+            {!product.externalUrl && <CartAddIcon item={{ type: "product", slug: product.slug }} title={product.title} />}
+          </div>
         </div>
       </div>
-      <Link href={`/product/${product.slug}`} className="card-link" aria-label={`Открыть ${product.title}`}><Chevron /></Link>
     </article>
   );
 }

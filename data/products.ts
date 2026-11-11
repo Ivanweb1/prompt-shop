@@ -12,6 +12,7 @@ export type Product = {
   priceNote?: string; // расшифровка тарифов на странице товара
   externalUrl?: string; // товар покупается не через сайт (например, Telegram-бот)
   image?: string; // своя обложка из public/, вместо сгенерированного превью
+  video?: string; // зацикленное видео-превью сайта (mp4 без звука), image — постер
   imageBg?: string; // цвет подложки под картинку
   volume: string[];
   ai: string[];
@@ -29,7 +30,8 @@ export const products: Product[] = [
     title: "Живой сайт со скролл-видео — под любую нишу",
     category: "Промпты",
     price: 490,
-    image: "/products/scroll-video-site.jpg",
+    image: "/products/scroll-video-site-poster.jpg",
+    video: "/products/scroll-video-site.mp4",
     imageBg: "#DEE4F4",
     volume: ["Промпт + скилл", "Под любую нишу"],
     ai: ["Claude", "Генератор видео"],
@@ -37,22 +39,6 @@ export const products: Product[] = [
     contents: ["Промпты для 4 ключевых кадров под вашу нишу", "Промпты для 3 видео между кадрами", "Промпт сайта для Claude с переменными", "Скилл для Claude и инструкция в 3 шага"],
     audience: ["Веб-дизайнерам", "Фрилансерам", "Студиям"],
     preview: { eyebrow: "На выходе", result: "Промо-сайт, где видео идёт за скроллом, под нишу клиента" },
-    popularity: 10,
-    createdAt: "2026-11-11",
-  },
-  {
-    slug: "wow-dashboard-screen",
-    title: "Вау-экран из плиток — под любую нишу",
-    category: "Промпты",
-    price: 490,
-    image: "/products/wow-dashboard-screen.jpg",
-    imageBg: "#DBE3F0",
-    volume: ["Промпт + скилл", "Под любую нишу"],
-    ai: ["Claude", "Генератор изображений"],
-    description: "Первый экран в виде дашборда из плиток вокруг большого рендера: цифры считаются при входе, пины с подсказками, переключение день / вечер. Подставляете нишу, название и три цифры клиента — Claude собирает экран",
-    contents: ["Промпт экрана с переменными под нишу", "Промпт для дневного и вечернего рендера", "Скилл для Claude", "Инструкция в 3 шага"],
-    audience: ["Веб-дизайнерам", "Фрилансерам", "Студиям"],
-    preview: { eyebrow: "На выходе", result: "Первый экран-дашборд с рендером под нишу клиента" },
     popularity: 10,
     createdAt: "2026-11-11",
   },

@@ -172,8 +172,13 @@ main{overflow:hidden}
 .price-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:auto}
 .price-row strong{font-size:24px;font-weight:500;letter-spacing:-.02em}
 .price-row s{font-size:13px;color:var(--muted-2)}
-.card-link{position:absolute;right:22px;bottom:22px;width:40px;height:40px;border-radius:50%;background:var(--panel);display:grid;place-items:center;font-size:15px;transition:background .2s,color .2s}
-.product-card:hover .card-link{background:var(--blue);color:#fff}
+.card-actions{margin-left:auto;display:flex;align-items:center;gap:8px}
+.card-more{height:40px;padding:0 18px;border-radius:999px;background:var(--panel);display:inline-flex;align-items:center;font-size:13px;font-weight:500;transition:background .2s,color .2s}
+.card-more:hover{background:var(--ink);color:#fff}
+.card-cart{width:40px;height:40px;border-radius:50%;border:0;padding:0;background:var(--blue);color:#fff;display:grid;place-items:center;cursor:pointer;transition:transform .2s,background .2s}
+.card-cart:hover{transform:scale(1.06)}
+.card-cart .cart-icon{width:19px;height:19px}
+.card-cart.is-added{background:var(--ink)}
 
 /* Обложка товара */
 .preview-art{position:relative;isolation:isolate;height:100%;min-height:240px;border-radius:var(--r-md);overflow:hidden;padding:16px;display:flex;flex-direction:column;justify-content:space-between}
@@ -191,12 +196,15 @@ main{overflow:hidden}
 .preview-glass strong{display:block;font-size:19px;font-weight:400;line-height:1.2;letter-spacing:-.015em}
 .preview-image{padding:0;align-items:center;justify-content:center;background:#01071A}
 .preview-image img{width:100%;height:100%;object-fit:contain;display:block}
+.preview-art.preview-video{padding:14px!important;overflow:hidden;align-items:center;justify-content:center}
+.preview-video video{width:100%;height:auto;max-height:100%;aspect-ratio:3/2;object-fit:contain;display:block;border-radius:10px;box-shadow:0 14px 34px rgba(14,40,96,.16)}
 
 /* Об авторе */
 .about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:80px;align-items:center}
 .about-visual{position:relative;isolation:isolate;aspect-ratio:4/5;border-radius:var(--r-xl);background:var(--grad-sky);overflow:hidden;display:flex;align-items:flex-end;padding:18px;box-shadow:var(--shadow-float)}
 .about-track{position:absolute;z-index:-1;width:150%;left:-25%;top:16%;color:rgba(255,255,255,.26)}
-.about-logo{position:absolute;z-index:-1;width:30%;height:auto;left:35%;top:30%;opacity:.95}
+.about-photo{position:absolute;z-index:-1;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 15%}
+.about-visual::after{content:"";position:absolute;z-index:-1;inset:auto 0 0;height:40%;background:linear-gradient(180deg,rgba(10,20,40,0),rgba(10,20,40,.45))}
 .about-glass{width:100%;display:flex;flex-direction:column;gap:4px;padding:18px 20px;border-radius:var(--r-lg);background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:#fff}
 .about-glass b{font-size:18px;font-weight:500}
 .about-glass span{font-size:13px;color:rgba(255,255,255,.75)}
@@ -331,12 +339,12 @@ main{overflow:hidden}
 .checkout-form>label:not(.consent){margin-bottom:18px}
 .input-prefix{position:relative;display:block}
 .input-prefix i{position:absolute;left:18px;top:50%;transform:translateY(-50%);font-style:normal;font-size:15px;color:var(--muted)}
-.checkout-form .input-prefix input{width:100%;padding-left:36px}
+.checkout-form .input-prefix input[type=text]{width:100%;padding-left:36px}
 .checkout-form input[type=text]{height:56px;border:1px solid var(--line);border-radius:var(--r-sm);padding:0 18px;background:var(--panel);font-size:15px;outline:none;transition:border-color .2s,background .2s}
 .checkout-form input[type=text]:focus{border-color:var(--blue);background:#fff}
 .checkout-form input:user-invalid{border-color:#D23B3B}
 .field-hint{font-size:12px;font-weight:400;line-height:1.45;color:var(--muted)}
-.consent-ads{margin-top:0!important}
+.consent-ads,.consent-next{margin-top:0!important}
 
 /* Умный поиск в шапке */
 .header-search{position:relative;flex:1;max-width:480px;height:46px}

@@ -33,7 +33,6 @@ export default function Home() {
           <div className="hero-stage">
             <span className="hero-glow" aria-hidden />
             <div className="hero-copy">
-              <div className="descriptor light-muted">МАГАЗИН ИВАНА ПАНЬКИНА</div>
               <h1>
                 <span className="line">Рабочие материалы</span>
                 <span className="line">для дизайна <span className="highlight">с AI</span></span>

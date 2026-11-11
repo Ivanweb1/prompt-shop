@@ -6,7 +6,7 @@ import { KeyboardEvent, useEffect, useMemo, useRef, useState } from "react";
 import { priceLabel, products } from "@/data/products";
 
 // Запросы, которые «печатаются» в пустом поле — все находят что-то в каталоге
-const HINTS = ["промпт для концепции сайта", "парсер 2ГИС", "рассылки в Telegram", "чек-лист вёрстки", "аудит макета в Figma", "мини-курс по сборке сайта"];
+const HINTS = ["парсер 2ГИС", "рассылки в Telegram", "база компаний без сайта"];
 
 const norm = (text: string) => " " + text.toLowerCase().replace(/ё/g, "е").replace(/[@«»"().,—\[\]_-]/g, " ");
 

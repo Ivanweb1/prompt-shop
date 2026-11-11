@@ -9,8 +9,12 @@ import { bundles, getBundleProducts } from "@/data/bundles";
 import { categories, formatPrice, products } from "@/data/products";
 
 const bundle = bundles[0];
-const bundleProducts = getBundleProducts(bundle);
-const bundleDiscount = Math.round((1 - bundle.price / bundle.oldPrice) * 100);
+const bundleProducts = bundle ? getBundleProducts(bundle) : [];
+const bundleDiscount = bundle ? Math.round((1 - bundle.price / bundle.oldPrice) * 100) : 0;
+const plural = (n: number, one: string, few: string, many: string) => {
+  const m10 = n % 10, m100 = n % 100;
+  return m10 === 1 && m100 !== 11 ? one : m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14) ? few : many;
+};
 const categoryTones = ["", "cat-sky", "", "cat-deep", "", ""];
 
 const faq = [
@@ -34,7 +38,7 @@ export default function Home() {
                 <span className="line">Рабочие материалы</span>
                 <span className="line">для дизайна <span className="highlight">с AI</span></span>
               </h1>
-              <div className="hero-actions"><Link className="button button-light" href="#catalog">Смотреть каталог <span aria-hidden><Chevron /></span></Link><span className="hero-caption">{products.length} материалов<br />в каталоге</span></div>
+              <div className="hero-actions"><Link className="button button-light" href="#catalog">Смотреть каталог <span aria-hidden><Chevron /></span></Link><span className="hero-caption">{products.length} {plural(products.length, "материал", "материала", "материалов")}<br />в каталоге</span></div>
             </div>
             <HeroPreviews />
           </div>
@@ -47,7 +51,7 @@ export default function Home() {
             {categories.slice(1).map((item, index) => (
               <a href="#catalog" className={`cat-card ${categoryTones[index]}`} key={item.name}>
                 {categoryTones[index] && <Track className="cat-track" />}
-                <span className="cat-card-top"><span>{String(index + 1).padStart(2, "0")}</span><span>{item.count} {item.count === 1 ? "материал" : "материала"}</span></span>
+                <span className="cat-card-top"><span>{String(index + 1).padStart(2, "0")}</span><span>{item.count} {plural(item.count, "материал", "материала", "материалов")}</span></span>
                 <strong>{item.name}</strong>
                 <span className="cat-arrow" aria-hidden><Chevron /></span>
               </a>
@@ -56,13 +60,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section bundle-section" id="bundles"><div className="container">
+      {bundle && <section className="section bundle-section" id="bundles"><div className="container">
         <div className="section-heading centered"><div className="descriptor">КОМПЛЕКТОМ ВЫГОДНЕЕ</div><h2>Три шага в одном <span className="highlight">наборе</span></h2><p>Материалы дополняют друг друга и стоят выгоднее вместе</p></div>
         <div className="bundle-layout">
           <ol className="bundle-steps">
             {bundleProducts.map((item, index) => (
               <li key={item.slug} className={index === 0 ? "active" : ""}>
-                <Link href={`/product/${item.slug}`}><b>{item.title.replace("[ДЕМО] ", "")}</b><small>{String(index + 1).padStart(2, "0")} · {item.category}</small></Link>
+                <Link href={`/product/${item.slug}`}><b>{item.title}</b><small>{String(index + 1).padStart(2, "0")} · {item.category}</small></Link>
               </li>
             ))}
           </ol>
@@ -82,7 +86,7 @@ export default function Home() {
             </dl>
           </Link>
         </div>
-      </div></section>
+      </div></section>}
 
       <Catalog products={products} />
 

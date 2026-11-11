@@ -14,7 +14,6 @@ export function Footer() {
           <div>
             <div className="descriptor">НАВИГАЦИЯ</div>
             <Link href="/#catalog">Каталог</Link>
-            <Link href="/#bundles">Комплекты</Link>
             <Link href="/#about">Об авторе</Link>
           </div>
           <div>

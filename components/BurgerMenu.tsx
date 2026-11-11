@@ -6,7 +6,6 @@ import { HeaderSearch } from "./HeaderSearch";
 
 const LINKS = [
   ["/#catalog", "Каталог"],
-  ["/#bundles", "Комплекты"],
   ["/#about", "Об авторе"],
   ["/#faq", "FAQ"],
   ["/cart/", "Корзина"],

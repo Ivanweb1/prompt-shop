@@ -23,8 +23,13 @@ const DEMOS: Demo[] = [
     keys: ["коф", "кафе", "напит", "латте", "матч", "чай", "бар", "ресторан", "еда"],
     steps: ["Референс: карточка напитка на весь экран", "Три напитка: латте, эспрессо, матча", "Тема сайта перекрашивается под напиток", "Выбор размера и заказ"],
   },
+  {
+    slug: "orient", name: "Ориентир", url: "",
+    keys: ["жк", "недвиж", "квартир", "дом", "застрой", "жил", "риелт"],
+    steps: ["Референс: дашборд с карточками поверх рендера", "Рендеры комплекса днём и вечером", "Переключение «день — вечер», свет в окнах", "Карточки: сроки, продажи, кнопка подбора"],
+  },
 ];
-const CHIPS = ["лендинг парфюма", "магазин кофе", "сайт кофейни"];
+const CHIPS = ["лендинг парфюма", "магазин кофе", "сайт кофейни", "сайт ЖК"];
 
 function pick(query: string) {
   const q = query.toLowerCase();
@@ -83,7 +88,7 @@ export function PromptDemo() {
             </div>
             <div className="c-term-result-row">
               <span>{result.exact ? `Сайт ${result.demo.name} из витрины` : `Похожий пример из витрины — ${result.demo.name}`}</span>
-              <a href={result.demo.url} target="_blank" rel="noreferrer">Открыть сайт ↗</a>
+              {result.demo.url && <a href={result.demo.url} target="_blank" rel="noreferrer">Открыть сайт ↗</a>}
               <button type="button" onClick={reset}>Ещё раз</button>
             </div>
           </div>

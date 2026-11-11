@@ -21,6 +21,7 @@ const demos = [
   { slug: "mirra", name: "MIRRA", niche: "Парфюм", wow: "Флакон собирается при прокрутке: капля → флакон → ноты → подиум", url: "https://ivanweb1.github.io/perfume-wow-demo/" },
   { slug: "kaffa", name: "KAFFA", niche: "Магазин кофе", wow: "Сцены сменяют друг друга при прокрутке: зёрна → помол → пролив → глоток", url: "https://ivanweb1.github.io/kaffa-wow-demo/" },
   { slug: "zerno", name: "Зерно", niche: "Кофейня", wow: "Выбираешь напиток — и весь сайт перекрашивается под него", url: "https://ivanweb1.github.io/coffee-wow-demo/" },
+  { slug: "orient", name: "Ориентир", niche: "Жилой комплекс", wow: "Экран-дашборд ЖК: день сменяется вечером, в окнах загорается свет", url: "" },
 ];
 
 const steps = [
@@ -79,24 +80,20 @@ export default function CoursePage() {
       <section className="section c-showcase" id="demos"><div className="container">
         <div className="section-heading"><div><div className="descriptor">ВИТРИНА</div><h2>Такие сайты вы научитесь<br /><span className="highlight">делать сами</span></h2></div><p>Каждый собран с ИИ по тому же пути, что в курсе: референс → кадры → видео → сайт. Откройте любой и полистайте — бренды вымышленные</p></div>
         <div className="c-demos">
-          {demos.map((d) => (
-            <a key={d.slug} href={d.url} target="_blank" rel="noreferrer" className="c-demo">
+          {demos.map((d) => {
+            const inner = <>
               <div className="c-demo-screen">
                 <DemoVideo src={asset(`/course/demo-${d.slug}.mp4`)} poster={asset(`/course/demo-${d.slug}.jpg`)} label={`Запись демо-сайта ${d.name}`} />
               </div>
               <div className="c-demo-info">
                 <div><span className="c-demo-niche">{d.niche}</span><strong>{d.name}</strong><p>{d.wow}</p></div>
-                <span className="c-demo-open">Открыть сайт <Chevron /></span>
+                {d.url ? <span className="c-demo-open">Открыть сайт <Chevron /></span> : <span className="c-demo-open">Демо-экран</span>}
               </div>
-            </a>
-          ))}
-          <Link href="#start" className="c-demo c-demo-next">
-            <Track className="c-demo-next-track" rings={6} />
-            <span className="c-demo-niche">Ваша ниша</span>
-            <strong>Следующий вау-сайт —<br />ваш</strong>
-            <p>Кофейня, салон, застройщик или ваш клиент: на курсе соберёте такой же сайт под свою задачу</p>
-            <span className="c-demo-open">Как попасть на курс <Chevron /></span>
-          </Link>
+            </>;
+            return d.url
+              ? <a key={d.slug} href={d.url} target="_blank" rel="noreferrer" className="c-demo">{inner}</a>
+              : <div key={d.slug} className="c-demo">{inner}</div>;
+          })}
         </div>
       </div></section>
 

@@ -3,7 +3,14 @@ import { asset } from "@/lib/asset";
 import { Chevron } from "@/components/Chevron";
 import { DemoVideo } from "@/components/course/DemoVideo";
 
-// Первый экран курса: текст слева, справа небольшое зацикленное превью демо-сайта MIRRA
+// Сайты, которые ученики научатся делать: бесконечная вертикальная лента справа
+const REEL = [
+  { slug: "mirra", name: "MIRRA", niche: "парфюм" },
+  { slug: "kaffa", name: "KAFFA", niche: "магазин кофе" },
+  { slug: "orient", name: "Ориентир", niche: "жилой комплекс" },
+  { slug: "zerno", name: "Зерно", niche: "кофейня" },
+];
+
 export function CourseHero() {
   return (
     <section className="c-hero">
@@ -24,13 +31,16 @@ export function CourseHero() {
               <Link className="c-link light" href="#demos">Смотреть примеры</Link>
             </div>
           </div>
-          <a className="c-hero-preview" href="https://ivanweb1.github.io/perfume-wow-demo/" target="_blank" rel="noreferrer">
-            <div className="c-browser">
-              <div className="c-browser-bar"><i /><i /><i /><span>mirra · демо</span></div>
-              <DemoVideo src={asset("/course/demo-mirra.mp4")} poster={asset("/course/demo-mirra.jpg")} label="Запись демо-сайта MIRRA" />
+          <div className="c-reel" aria-label="Сайты, которые вы научитесь делать">
+            <div className="c-reel-track">
+              {[...REEL, ...REEL].map((d, i) => (
+                <div className="c-browser" key={i} aria-hidden={i >= REEL.length}>
+                  <div className="c-browser-bar"><i /><i /><i /><span>{d.name.toLowerCase()} · {d.niche}</span></div>
+                  <DemoVideo src={asset(`/course/demo-${d.slug}.mp4`)} poster={asset(`/course/demo-${d.slug}.jpg`)} label={`Демо-сайт ${d.name}`} />
+                </div>
+              ))}
             </div>
-            <div className="c-hero-caption"><span><b>MIRRA</b> · бренд вымышленный, сделано с ИИ</span><span>Открыть <Chevron /></span></div>
-          </a>
+          </div>
         </div>
       </div>
     </section>

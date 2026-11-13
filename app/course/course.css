@@ -195,4 +195,11 @@ main:has(.course){overflow:visible}
   .c-final-card{padding:56px 24px}
   .c-modules summary{padding:20px}
   .c-modules li{grid-template-columns:1fr;gap:2px}
+  .c-compare,.c-tariff-grid,.c-demand-grid{grid-template-columns:1fr}
+  .c-compare>div{padding:28px 24px}
+  .c-tariff{padding:32px 24px}
+  .c-demand-col{padding:20px}
+  .c-orders{min-height:440px}
+  .c-orders-window{left:20px;right:20px}
+  .c-need{padding:20px}
 }
